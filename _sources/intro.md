@@ -1,11 +1,22 @@
-# Welcome to your Jupyter Book
+# Penambangan Data
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
 
-Check out the content pages bundled with this sample book to see more.
+Materi penambangan data biasanya mencakup berbagai teknik dan metode, seperti klasifikasi, clustering, regresi, asosiasi, dan analisis prediktif. Selain itu, materi ini juga membahas alat dan teknologi yang digunakan, seperti algoritma machine learning, database, dan visualisasi data. Dengan memahami penambangan data, kita dapat mengubah data mentah menjadi pengetahuan yang berguna, membantu organisasi atau individu untuk lebih kompetitif, efisien, dan inovatif.
+
+
+Melalui materi ini, kita akan mempelajari bagaimana penambangan data dapat diaplikasikan dalam berbagai skenario nyata, serta langkah-langkah yang diperlukan untuk melakukan proses ini secara efektif. 
+
+
+Identitas Mahasiswa
+
+Nama: Dwi Prasetya Mumtaz
+
+Nim: 230411100099
+
+Prodi: Teknik Informatika
+
+Email: dwiprasetyamumtaz@gmail.com
+
 
 ```{tableofcontents}
 ```
