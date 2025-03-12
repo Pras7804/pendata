@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Penambangan Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tipe Data &#8212; Penambangan Data</title>
   
   
   
@@ -56,9 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tipe_data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Memahami Data" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -178,9 +178,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="data_understanding.html"><strong>Memahami Data</strong></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tipe_data.html"><strong>Tipe Data</strong></a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="data_understanding.html"><strong>Memahami Data</strong></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>Tipe Data</strong></a></li>
 </ul>
 </details></li>
 </ul>
@@ -254,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftipe_data.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,6 +266,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tipe_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -307,7 +355,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -318,11 +368,32 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Tipe Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macam-macam-tipe-data-dalam-data-understanding"><strong>Macam-macam Tipe Data dalam Data Understanding</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kualitatif"><strong>1. Atribut Kualitatif</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nominal-kategorikal"><strong>- Nominal (Kategorikal)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal"><strong>- Ordinal</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#biner"><strong>- Biner</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kuantitatif"><strong>2. Atribut Kuantitatif</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diskrit"><strong>- Diskrit</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kontinu"><strong>- Kontinu</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -332,13 +403,86 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
+  <section class="tex2jax_ignore mathjax_ignore" id="tipe-data">
+<h1><strong>Tipe Data</strong><a class="headerlink" href="#tipe-data" title="Link to this heading">#</a></h1>
+<section id="macam-macam-tipe-data-dalam-data-understanding">
+<h2><strong>Macam-macam Tipe Data dalam Data Understanding</strong><a class="headerlink" href="#macam-macam-tipe-data-dalam-data-understanding" title="Link to this heading">#</a></h2>
+<section id="atribut-kualitatif">
+<h3><strong>1. Atribut Kualitatif</strong><a class="headerlink" href="#atribut-kualitatif" title="Link to this heading">#</a></h3>
+<section id="nominal-kategorikal">
+<h4><strong>- Nominal (Kategorikal)</strong><a class="headerlink" href="#nominal-kategorikal" title="Link to this heading">#</a></h4>
+<p>Atribut nominal hanya digunakan untuk memberi label atau kategori pada suatu objek tanpa memiliki urutan atau tingkatan tertentu. Data ini tidak memiliki makna numerik dan tidak dapat dilakukan operasi matematika seperti penjumlahan atau pengurangan.
+Contoh:</p>
+<ul class="simple">
+<li><p>Warna rambut: Hitam, Coklat, Biru</p></li>
+<li><p>Merek kendaraan: Yamaha, Honda, Suzuki</p></li>
+</ul>
+</section>
+<section id="ordinal">
+<h4><strong>- Ordinal</strong><a class="headerlink" href="#ordinal" title="Link to this heading">#</a></h4>
+<p>Atribut ordinal memiliki kategori dengan urutan atau tingkatan tertentu, tetapi jarak antar kategori tidak bisa diukur secara pasti.
+Contoh:</p>
+<ul class="simple">
+<li><p>Tingkat pendidikan: SD, SMP, SMA, S1, S2, S3</p></li>
+<li><p>Tingkat kepuasan pelanggan: Sangat Puas, Puas, Netral, Tidak Puas, Sangat Tidak Puas</p></li>
+<li><p>Risiko investasi: Rendah, Sedang, Tinggi</p></li>
+</ul>
+</section>
+<section id="biner">
+<h4><strong>- Biner</strong><a class="headerlink" href="#biner" title="Link to this heading">#</a></h4>
+<p>Atribut biner hanya memiliki dua kemungkinan nilai, seperti 0 dan 1, atau Ya dan Tidak.
+Contoh:</p>
+<ul class="simple">
+<li><p>Status pernikahan: Menikah (1), Belum Menikah (0)</p></li>
+<li><p>Jenis Kelamin: Laki-laki, Perempuan</p></li>
+</ul>
+</section>
+</section>
+<section id="atribut-kuantitatif">
+<h3><strong>2. Atribut Kuantitatif</strong><a class="headerlink" href="#atribut-kuantitatif" title="Link to this heading">#</a></h3>
+<section id="diskrit">
+<h4><strong>- Diskrit</strong><a class="headerlink" href="#diskrit" title="Link to this heading">#</a></h4>
+<p>Atribut diskrit hanya bisa memiliki nilai dalam jumlah terbatas, biasanya dalam bentuk bilangan bulat yang diperoleh dari hasil perhitungan (counting).
+Contoh:</p>
+<ul class="simple">
+<li><p>Jumlah anak dalam keluarga: 1, 2, 3, …</p></li>
+<li><p>Jumlah kendaraan di parkiran: 3, 7, 15</p></li>
+<li><p>Jumlah siswa dalam kelas: 27, 31, 45</p></li>
+</ul>
+</section>
+<section id="kontinu">
+<h4><strong>- Kontinu</strong><a class="headerlink" href="#kontinu" title="Link to this heading">#</a></h4>
+<p>Atribut kontinu memiliki nilai yang dapat berupa pecahan atau desimal karena diperoleh dari hasil pengukuran (measurement).
+Contoh:</p>
+<ul class="simple">
+<li><p>Tinggi badan: 155.5 cm, 160.6 cm</p></li>
+<li><p>Berat badan: 61.1 kg, 70.8 kg</p></li>
+<li><p>Suhu udara: 22.3°C, 30.2°C</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
 
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
-
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -350,12 +494,49 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="data_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Memahami Data</strong></p>
+      </div>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macam-macam-tipe-data-dalam-data-understanding"><strong>Macam-macam Tipe Data dalam Data Understanding</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kualitatif"><strong>1. Atribut Kualitatif</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nominal-kategorikal"><strong>- Nominal (Kategorikal)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ordinal"><strong>- Ordinal</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#biner"><strong>- Biner</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-kuantitatif"><strong>2. Atribut Kuantitatif</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diskrit"><strong>- Diskrit</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kontinu"><strong>- Kontinu</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
