@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Penambangan Data</title>
+    <title>Memahami Data &#8212; Penambangan Data</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'data_understanding';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="deteksi_outlier.html" />
+    <link rel="next" title="Deteksi Outlier" href="deteksi_outlier.html" />
     <link rel="prev" title="Penambangan Data" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,7 +179,13 @@
                 </a>
             </li>
         </ul>
-        
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><strong>Memahami Data</strong></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="deteksi_outlier.html"><strong>Deteksi Outlier</strong></a></li>
+</ul>
+</details></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -363,11 +369,48 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Memahami Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-dalam-memahami-data"><strong>Proses dalam Memahami Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data"><strong>1. Pengumpulan Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data"><strong>Lokasi Data</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-pengumpulan"><strong>Metode Pengumpulan</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mengumpulkan-data"><strong>Proses Mengumpulkan Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#a-menghubungkan-data-dari-mysql-dan-postgresql"><strong>a. Menghubungkan Data dari MySQL dan PostgreSQL</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya"><strong>b. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menggabungkan-data-dari-kedua-database"><strong>c. Menggabungkan Data dari Kedua Database</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data"><strong>2. Profiling Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-tentang-dataset"><strong>Informasi tentang Dataset</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-dan-asosiasi"><strong>3. Korelasi dan Asosiasi</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-hubungan-antar-variabel"><strong>Memahami Hubungan antar Variabel</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data"><strong>4. Eksplorasi Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentifikasi-masalah"><strong>5. Indentifikasi Masalah</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengecek-data-hilang-missing-value"><strong>Mengecek Data Hilang (Missing Value)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mendeteksi-outliers"><strong>Mendeteksi Outliers</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengecek-duplikasi-data"><strong>Mengecek Duplikasi Data</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengecek-inkonsistensi"><strong>Mengecek Inkonsistensi</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -377,7 +420,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>#<strong>Memahami Data</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="memahami-data">
+<h1><strong>Memahami Data</strong><a class="headerlink" href="#memahami-data" title="Link to this heading">#</a></h1>
 <p><strong>Memahami Data</strong> atau yang biasa disebut dengan <strong>Data Understanding</strong> adalah salah satu tahap penting dalam proses <em>Knowledge Discovery in Databases</em> (KDD) atau Data Mining. Ini merupakan langkah awal yang bertujuan untuk memahami data secara mendalam sebelum melakukan analisis lebih lanjut. Pemahaman data yang baik sangat krusial karena akan memengaruhi keberhasilan seluruh proses data mining.</p>
 <p>Beberapa kegiatan dalam memahami data diantaranya adalah:</p>
 <ul>
@@ -403,24 +447,32 @@ document.write(`
 </ol>
 </li>
 </ul>
-<p>##<strong>Proses dalam Memahami Data</strong></p>
-<p>###<strong>1. Pengumpulan Data</strong></p>
+<section id="proses-dalam-memahami-data">
+<h2><strong>Proses dalam Memahami Data</strong><a class="headerlink" href="#proses-dalam-memahami-data" title="Link to this heading">#</a></h2>
+<section id="pengumpulan-data">
+<h3><strong>1. Pengumpulan Data</strong><a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h3>
 <p>Dataset <strong>IRIS</strong> adalah dataset yang berisi informasi tentang tiga spesies bunga iris (<em>Setosa, Versicolor, Virginica</em>) dengan fitur utama yaitu; panjang dan lebar dari sepal serta petal.</p>
-<p>####<strong>Lokasi Data</strong>
-Teruntuk lokasi dari data <strong>IRIS</strong> berada dalam <strong><a class="reference external" href="http://aiven.io">aiven.io</a></strong> (platform cloud dan AI berbasis open source):</p>
+<section id="lokasi-data">
+<h4><strong>Lokasi Data</strong><a class="headerlink" href="#lokasi-data" title="Link to this heading">#</a></h4>
+<p>Teruntuk lokasi dari data <strong>IRIS</strong> berada dalam <strong><a class="reference external" href="http://aiven.io">aiven.io</a></strong> (platform cloud dan AI berbasis open source):</p>
 <ul class="simple">
 <li><p>Data IRIS <em>petal</em> berada di database <strong>MySQL</strong></p></li>
 <li><p>Data IRIS <em>sepal</em> berada di database <strong>PostgreSQL</strong></p></li>
 </ul>
-<p>####<strong>Metode Pengumpulan</strong>
-Langkah untuk mengumpulkan data dilakukan menggunakan <strong>Python</strong> sebagai berikut:</p>
+</section>
+<section id="metode-pengumpulan">
+<h4><strong>Metode Pengumpulan</strong><a class="headerlink" href="#metode-pengumpulan" title="Link to this heading">#</a></h4>
+<p>Langkah untuk mengumpulkan data dilakukan menggunakan <strong>Python</strong> sebagai berikut:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">pymysql</span></code></strong> : Digunakan untuk menghubungkan dan mengambil data dari MySQL.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">psycopg2</span></code></strong> : Digunakan untuk menghubungkan dan mengambil data dari PostgreSQL.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">pandas</span></code></strong> : Digunakan untuk membaca dan mengolah data setelah diambil dari database.</p></li>
 </ul>
-<p>####<strong>Proses Mengumpulkan Data</strong>
-#####<strong>a. Menghubungkan Data dari MySQL dan PostgreSQL</strong></p>
+</section>
+<section id="proses-mengumpulkan-data">
+<h4><strong>Proses Mengumpulkan Data</strong><a class="headerlink" href="#proses-mengumpulkan-data" title="Link to this heading">#</a></h4>
+<section id="a-menghubungkan-data-dari-mysql-dan-postgresql">
+<h5><strong>a. Menghubungkan Data dari MySQL dan PostgreSQL</strong><a class="headerlink" href="#a-menghubungkan-data-dari-mysql-dan-postgresql" title="Link to this heading">#</a></h5>
 <ul class="simple">
 <li><p>Install library yang diperlukan</p></li>
 </ul>
@@ -588,7 +640,9 @@ Data dari PostgreSQL:
 </div>
 </div>
 </div>
-<p>#####<strong>b. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya</strong></p>
+</section>
+<section id="b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya">
+<h5><strong>b. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya</strong><a class="headerlink" href="#b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mysql_query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM iris_data;&quot;</span>
@@ -630,7 +684,9 @@ Data dari PostgreSQL:
 </div>
 </div>
 </div>
-<p>#####<strong>c. Menggabungkan Data dari Kedua Database</strong></p>
+</section>
+<section id="c-menggabungkan-data-dari-kedua-database">
+<h5><strong>c. Menggabungkan Data dari Kedua Database</strong><a class="headerlink" href="#c-menggabungkan-data-dari-kedua-database" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_postgres</span><span class="p">,</span> <span class="n">df_mysql</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
@@ -660,9 +716,14 @@ Data dari PostgreSQL:
 </div>
 </div>
 </div>
-<p>###<strong>2. Profiling Data</strong>
-Profiling data termasuk langkah penting dalam memahami karakteristik dataset sebelum melakukan analisis lebih lanjut.</p>
-<p>####<strong>Informasi tentang Dataset</strong></p>
+</section>
+</section>
+</section>
+<section id="profiling-data">
+<h3><strong>2. Profiling Data</strong><a class="headerlink" href="#profiling-data" title="Link to this heading">#</a></h3>
+<p>Profiling data termasuk langkah penting dalam memahami karakteristik dataset sebelum melakukan analisis lebih lanjut.</p>
+<section id="informasi-tentang-dataset">
+<h4><strong>Informasi tentang Dataset</strong><a class="headerlink" href="#informasi-tentang-dataset" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Menampilkan Informasi Dataset</p></li>
 </ul>
@@ -1016,8 +1077,12 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
-<p>###<strong>3. Korelasi dan Asosiasi</strong>
-####<strong>Memahami Hubungan antar Variabel</strong></p>
+</section>
+</section>
+<section id="korelasi-dan-asosiasi">
+<h3><strong>3. Korelasi dan Asosiasi</strong><a class="headerlink" href="#korelasi-dan-asosiasi" title="Link to this heading">#</a></h3>
+<section id="memahami-hubungan-antar-variabel">
+<h4><strong>Memahami Hubungan antar Variabel</strong><a class="headerlink" href="#memahami-hubungan-antar-variabel" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Menghitung Korelasi antar Variabel Numerik</p></li>
 </ul>
@@ -1088,8 +1153,11 @@ Iris-virginica          6.588        2.974         5.552        2.026
 <img alt="_images/1648a9375d3df3091ea18b762ace7bfda2c7e19b9d5ca50aa64686871ab842ba.png" src="_images/1648a9375d3df3091ea18b762ace7bfda2c7e19b9d5ca50aa64686871ab842ba.png" />
 </div>
 </div>
-<p>###<strong>4. Eksplorasi Data</strong>
-Eksplorasi data bertujuan untuk mendeskripsikan statistik untuk memahami distribusi data</p>
+</section>
+</section>
+<section id="eksplorasi-data">
+<h3><strong>4. Eksplorasi Data</strong><a class="headerlink" href="#eksplorasi-data" title="Link to this heading">#</a></h3>
+<p>Eksplorasi data bertujuan untuk mendeskripsikan statistik untuk memahami distribusi data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_combined</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;50%&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">]]</span>
@@ -1434,9 +1502,12 @@ Eksplorasi data bertujuan untuk mendeskripsikan statistik untuk memahami distrib
 <img alt="_images/64cdf402ce22849d864d5e2ea106593d401493c0dbfeca07657d625734226ff9.png" src="_images/64cdf402ce22849d864d5e2ea106593d401493c0dbfeca07657d625734226ff9.png" />
 </div>
 </div>
-<p>###<strong>5. Indentifikasi Masalah</strong></p>
+</section>
+<section id="indentifikasi-masalah">
+<h3><strong>5. Indentifikasi Masalah</strong><a class="headerlink" href="#indentifikasi-masalah" title="Link to this heading">#</a></h3>
 <p>Mengidentifikasi Masalah jika menemukan potensi kendala dalam dataset yang bisa mempengaruhi analisis dan modeling.</p>
-<p>####<strong>Mengecek Data Hilang (Missing Value)</strong></p>
+<section id="mengecek-data-hilang-missing-value">
+<h4><strong>Mengecek Data Hilang (Missing Value)</strong><a class="headerlink" href="#mengecek-data-hilang-missing-value" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df_combined</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
@@ -1455,7 +1526,9 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>####<strong>Mendeteksi Outliers</strong></p>
+</section>
+<section id="mendeteksi-outliers">
+<h4><strong>Mendeteksi Outliers</strong><a class="headerlink" href="#mendeteksi-outliers" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memilih hanya kolom numerik</span>
@@ -1483,7 +1556,9 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>####<strong>Mengecek Duplikasi Data</strong></p>
+</section>
+<section id="mengecek-duplikasi-data">
+<h4><strong>Mengecek Duplikasi Data</strong><a class="headerlink" href="#mengecek-duplikasi-data" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df_combined</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
@@ -1496,7 +1571,9 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>####<strong>Mengecek Inkonsistensi</strong></p>
+</section>
+<section id="mengecek-inkonsistensi">
+<h4><strong>Mengecek Inkonsistensi</strong><a class="headerlink" href="#mengecek-inkonsistensi" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cek kategori unik dalam Class</span>
@@ -1546,8 +1623,12 @@ petal_width: [&lt;class &#39;float&#39;&gt;]
 </div>
 </div>
 </div>
+</section>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1593,7 +1674,7 @@ petal_width: [&lt;class &#39;float&#39;&gt;]
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title"><strong>Deteksi Outlier</strong></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1603,6 +1684,50 @@ petal_width: [&lt;class &#39;float&#39;&gt;]
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-dalam-memahami-data"><strong>Proses dalam Memahami Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data"><strong>1. Pengumpulan Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data"><strong>Lokasi Data</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-pengumpulan"><strong>Metode Pengumpulan</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mengumpulkan-data"><strong>Proses Mengumpulkan Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#a-menghubungkan-data-dari-mysql-dan-postgresql"><strong>a. Menghubungkan Data dari MySQL dan PostgreSQL</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#b-mengambil-dan-menampilkan-data-serta-menghapus-file-yang-di-upload-sebelumnya"><strong>b. Mengambil dan menampilkan data serta menghapus file yang di upload sebelumnya</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menggabungkan-data-dari-kedua-database"><strong>c. Menggabungkan Data dari Kedua Database</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data"><strong>2. Profiling Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-tentang-dataset"><strong>Informasi tentang Dataset</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-dan-asosiasi"><strong>3. Korelasi dan Asosiasi</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memahami-hubungan-antar-variabel"><strong>Memahami Hubungan antar Variabel</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data"><strong>4. Eksplorasi Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentifikasi-masalah"><strong>5. Indentifikasi Masalah</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengecek-data-hilang-missing-value"><strong>Mengecek Data Hilang (Missing Value)</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mendeteksi-outliers"><strong>Mendeteksi Outliers</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengecek-duplikasi-data"><strong>Mengecek Duplikasi Data</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengecek-inkonsistensi"><strong>Mengecek Inkonsistensi</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

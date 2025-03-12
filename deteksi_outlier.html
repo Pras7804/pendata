@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Penambangan Data</title>
+    <title>Deteksi Outlier &#8212; Penambangan Data</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'deteksi_outlier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="data_understanding.html" />
+    <link rel="prev" title="Memahami Data" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,7 +178,13 @@
                 </a>
             </li>
         </ul>
-        
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="data_understanding.html"><strong>Memahami Data</strong></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><strong>Deteksi Outlier</strong></a></li>
+</ul>
+</details></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -362,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Deteksi Outlier</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -371,9 +377,41 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-dalam-data-mining"><strong>Outlier dalam Data Mining</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-nearst-neighbor"><strong>Alur Kerja Nearst Neighbor</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-jumlah-tetangga-terdekat-k-yang-akan-dipilih"><strong>1. Menentukan jumlah tetangga terdekat(k) yang akan dipilih</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-antara-data-uji-dengan-semua-data-latih"><strong>2. Hitung jarak antara data uji dengan semua data latih</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-data-latih-berdasarkan-jarak-dari-yang-terdekat-ke-yang-terjauh-dengan-data-uji"><strong>3. Mengurutkan data latih berdasarkan jarak dari yang terdekat ke yang terjauh dengan data uji</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pilih-k-data-dengan-jarak-terdekat-dari-data-uji"><strong>4. Pilih (k) data dengan jarak terdekat dari data uji</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-frekuensi-masing-masing-kategori-pada-k-data-yang-telah-dipilih"><strong>5. Hitung frekuensi masing-masing kategori pada (k) data yang telah dipilih</strong></a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-kasus"><strong>Contoh Kasus</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-penyelesaian-untuk-g-30-75"><strong>Langkah-langkah Penyelesaian untuk G (30,75)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-data-outlier-dalam-data-iris"><strong>Mencari Data Outlier dalam Data Iris</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data-dari-database"><strong>Mengambil Data dari Database</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi"><strong>Lokasi</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-pengumpulan"><strong>Metode Pengumpulan</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mendeteksi-outlier"><strong>Proses Mendeteksi Outlier</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-data-dari-mysql-dan-postgresql"><strong>1. Menghubungkan Data dari MySQL dan PostgreSQL</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menggabungkan-data"><strong>2. Menggabungkan data</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-menggunakan-euclidean-distance"><strong>3. Menghitung jarak menggunakan Euclidean Distance</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-frekuensi-oulier"><strong>4. Menghitung frekuensi oulier</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-jarak-dari-terkecil-ke-terbesar"><strong>5. Mengurutkan jarak dari terkecil ke terbesar</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-outlier"><strong>6. Tabel outlier</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-outlier"><strong>7. Visualisasi outlier</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -384,9 +422,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>#<strong>Deteksi Outlier</strong></p>
-<p>##<strong>Outlier dalam Data Mining</strong>
-Outlier adalah objek data yang menyimpang secara signifikan dari objek data lainnya dan berperilaku dengan cara yang berbeda. Hal ini dapat disebabkan oleh kesalahan pengukuran atau eksekusi.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="deteksi-outlier">
+<h1><strong>Deteksi Outlier</strong><a class="headerlink" href="#deteksi-outlier" title="Link to this heading">#</a></h1>
+<section id="outlier-dalam-data-mining">
+<h2><strong>Outlier dalam Data Mining</strong><a class="headerlink" href="#outlier-dalam-data-mining" title="Link to this heading">#</a></h2>
+<p>Outlier adalah objek data yang menyimpang secara signifikan dari objek data lainnya dan berperilaku dengan cara yang berbeda. Hal ini dapat disebabkan oleh kesalahan pengukuran atau eksekusi.</p>
 <p>Outlier ada tiga jenis, yaitu:</p>
 <ol class="arabic">
 <li><p>Outlier Global (atau titik)</p>
@@ -417,11 +457,15 @@ Outlier adalah objek data yang menyimpang secara signifikan dari objek data lain
 <p>##<strong>Deteksi Outlier Menggunakann K-Nearest Neighbor(KNN)</strong>
 Nearest Neighbor atau <em>K-Nearest Neighbor (KNN)</em> merupakan salah satu algoritme klasifikasi dalam data mining yang memanfaatkan data terdekat untuk melakukan prediksi pada data baru yang belum dikenal (data uji).</p>
 <p>Algoritme ini bekerja dengan cara mencari sejumlah tetangga terdekat dari data uji dan menentukan kelas data uji tersebut berdasarkan mayoritas kelas dari tetangga terdekat (data latih) yang ditemukan. Nearest Neighbor dapat digunakan untuk menangani berbagai jenis data, baik data numerik maupun kategorikal. Pada data kategorikal, perhitungan jarak perbedaan atau kesamaan tidak dapat dihitung menggunakan operasi matematik seperti yang dapat dilakukan pada data numerik.</p>
-<p>###<strong>Alur Kerja Nearst Neighbor</strong></p>
-<p>####<strong>1. Menentukan jumlah tetangga terdekat(k) yang akan dipilih</strong>
-Penentuan nilai K tidak memiliki rumus pasti, tetapi ada beberapa tips yang dapat dipertimbangkan. Misalnya, jika jumlah kelas adalah genap, disarankan untuk memilih nilai K ganjil, sedangkan jika jumlah kelas adalah ganjil, disarankan memilih nilai K genap.</p>
-<p>####<strong>2. Hitung jarak antara data uji dengan semua data latih</strong>
-Setelah menentukan nilai K, langkah selanjutnya dalam algoritme Nearest Neighbor adalah menghitung jarak antara data uji dengan semua data latih. Jarak ini dapat dihitung menggunakan berbagai metode, seperti:</p>
+<section id="alur-kerja-nearst-neighbor">
+<h3><strong>Alur Kerja Nearst Neighbor</strong><a class="headerlink" href="#alur-kerja-nearst-neighbor" title="Link to this heading">#</a></h3>
+<section id="menentukan-jumlah-tetangga-terdekat-k-yang-akan-dipilih">
+<h4><strong>1. Menentukan jumlah tetangga terdekat(k) yang akan dipilih</strong><a class="headerlink" href="#menentukan-jumlah-tetangga-terdekat-k-yang-akan-dipilih" title="Link to this heading">#</a></h4>
+<p>Penentuan nilai K tidak memiliki rumus pasti, tetapi ada beberapa tips yang dapat dipertimbangkan. Misalnya, jika jumlah kelas adalah genap, disarankan untuk memilih nilai K ganjil, sedangkan jika jumlah kelas adalah ganjil, disarankan memilih nilai K genap.</p>
+</section>
+<section id="hitung-jarak-antara-data-uji-dengan-semua-data-latih">
+<h4><strong>2. Hitung jarak antara data uji dengan semua data latih</strong><a class="headerlink" href="#hitung-jarak-antara-data-uji-dengan-semua-data-latih" title="Link to this heading">#</a></h4>
+<p>Setelah menentukan nilai K, langkah selanjutnya dalam algoritme Nearest Neighbor adalah menghitung jarak antara data uji dengan semua data latih. Jarak ini dapat dihitung menggunakan berbagai metode, seperti:</p>
 <ul>
 <li><p>Euclidean distance</p>
 <p>Euclidean didefinisikan sebagai jarak lurus antara dua titik pada bidang atau ruang, jadi Euclidean hanya digunakan untuk menghitung jarak pada dua fitur atau titik saja. Untuk rumus dari euclidean:</p>
@@ -436,15 +480,25 @@ Setelah menentukan nilai K, langkah selanjutnya dalam algoritme Nearest Neighbor
 <p><img alt="image.png" src="data:image/png;base64,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" /></p>
 </li>
 </ul>
-<p>####<strong>3. Mengurutkan data latih berdasarkan jarak dari yang terdekat ke yang terjauh dengan data uji</strong>
-Setelah kita menghitung jarak antara data latih dengan data uji menggunakan suatu metrik, langkah selanjutnya adalah mengurutkan data latih berdasarkan jarak dari yang terdekat ke yang terjauh dengan data uji. Dalam hal ini, data latih yang paling dekat dengan data uji akan ditempatkan di bagian atas daftar, sedangkan data latih yang paling jauh akan ditempatkan di bagian bawah daftar. Hal ini dilakukan untuk memudahkan dalam mencari tetangga terdekat dari data uji pada langkah selanjutnya.</p>
-<p>####<strong>4. Pilih (k) data dengan jarak terdekat dari data uji</strong>
-Setelah data latih diurutkan berdasarkan jarak terdekat dengan data uji, selanjutnya pilih K data dengan jarak terkecil. Banyaknya K di sini berdasarkan jumlah K yang telah ditentukan di awal.</p>
-<p>####<strong>5. Hitung frekuensi masing-masing kategori pada (k) data yang telah dipilih</strong>
-Dalam penghitungan frekuensi ini, setiap kategori akan dihitung berapa kali muncul pada K data tersebut dan kemudian dicatat jumlahnya. Dengan mengetahui frekuensi masing-masing kategori, kita dapat menentukan kategori mana yang paling banyak muncul dan kemudian menjadikannya sebagai hasil prediksi untuk data yang sedang dicari kategori-nya.</p>
-<p>###<strong>Contoh Kasus</strong></p>
+</section>
+<section id="mengurutkan-data-latih-berdasarkan-jarak-dari-yang-terdekat-ke-yang-terjauh-dengan-data-uji">
+<h4><strong>3. Mengurutkan data latih berdasarkan jarak dari yang terdekat ke yang terjauh dengan data uji</strong><a class="headerlink" href="#mengurutkan-data-latih-berdasarkan-jarak-dari-yang-terdekat-ke-yang-terjauh-dengan-data-uji" title="Link to this heading">#</a></h4>
+<p>Setelah kita menghitung jarak antara data latih dengan data uji menggunakan suatu metrik, langkah selanjutnya adalah mengurutkan data latih berdasarkan jarak dari yang terdekat ke yang terjauh dengan data uji. Dalam hal ini, data latih yang paling dekat dengan data uji akan ditempatkan di bagian atas daftar, sedangkan data latih yang paling jauh akan ditempatkan di bagian bawah daftar. Hal ini dilakukan untuk memudahkan dalam mencari tetangga terdekat dari data uji pada langkah selanjutnya.</p>
+</section>
+<section id="pilih-k-data-dengan-jarak-terdekat-dari-data-uji">
+<h4><strong>4. Pilih (k) data dengan jarak terdekat dari data uji</strong><a class="headerlink" href="#pilih-k-data-dengan-jarak-terdekat-dari-data-uji" title="Link to this heading">#</a></h4>
+<p>Setelah data latih diurutkan berdasarkan jarak terdekat dengan data uji, selanjutnya pilih K data dengan jarak terkecil. Banyaknya K di sini berdasarkan jumlah K yang telah ditentukan di awal.</p>
+</section>
+<section id="hitung-frekuensi-masing-masing-kategori-pada-k-data-yang-telah-dipilih">
+<h4><strong>5. Hitung frekuensi masing-masing kategori pada (k) data yang telah dipilih</strong><a class="headerlink" href="#hitung-frekuensi-masing-masing-kategori-pada-k-data-yang-telah-dipilih" title="Link to this heading">#</a></h4>
+<p>Dalam penghitungan frekuensi ini, setiap kategori akan dihitung berapa kali muncul pada K data tersebut dan kemudian dicatat jumlahnya. Dengan mengetahui frekuensi masing-masing kategori, kita dapat menentukan kategori mana yang paling banyak muncul dan kemudian menjadikannya sebagai hasil prediksi untuk data yang sedang dicari kategori-nya.</p>
+</section>
+</section>
+<section id="contoh-kasus">
+<h3><strong>Contoh Kasus</strong><a class="headerlink" href="#contoh-kasus" title="Link to this heading">#</a></h3>
 <p><img alt="image.png" src="data:image/png;base64,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" /></p>
-<p>####<strong>Langkah-langkah Penyelesaian untuk G (30,75)</strong></p>
+<section id="langkah-langkah-penyelesaian-untuk-g-30-75">
+<h4><strong>Langkah-langkah Penyelesaian untuk G (30,75)</strong><a class="headerlink" href="#langkah-langkah-penyelesaian-untuk-g-30-75" title="Link to this heading">#</a></h4>
 <ol class="arabic">
 <li><p>Menentukan tetangga terdekat</p>
 <p>Disini saya menggunakan k = 3 dan menghitungnya untuk mengetahui tetangga terdekat.</p>
@@ -490,24 +544,35 @@ Dari 3 tetangga terdekat:</p>
 </li>
 </ol>
 <p>Mayoritasnya adalah 0, maka pelanggan <strong>G</strong> diprediksi tidak membeli produk (0).</p>
-<p>###<strong>Mencari Data Outlier dalam Data Iris</strong></p>
-<p>####<strong>Mengambil Data dari Database</strong></p>
-<p>#####<strong>Lokasi</strong>
-Teruntuk lokasi dari data <strong>IRIS</strong> berada dalam <strong><a class="reference external" href="http://aiven.io">aiven.io</a></strong> (platform cloud dan AI berbasis open source):</p>
+</section>
+</section>
+<section id="mencari-data-outlier-dalam-data-iris">
+<h3><strong>Mencari Data Outlier dalam Data Iris</strong><a class="headerlink" href="#mencari-data-outlier-dalam-data-iris" title="Link to this heading">#</a></h3>
+<section id="mengambil-data-dari-database">
+<h4><strong>Mengambil Data dari Database</strong><a class="headerlink" href="#mengambil-data-dari-database" title="Link to this heading">#</a></h4>
+<section id="lokasi">
+<h5><strong>Lokasi</strong><a class="headerlink" href="#lokasi" title="Link to this heading">#</a></h5>
+<p>Teruntuk lokasi dari data <strong>IRIS</strong> berada dalam <strong><a class="reference external" href="http://aiven.io">aiven.io</a></strong> (platform cloud dan AI berbasis open source):</p>
 <ul class="simple">
 <li><p>Data IRIS <em>petal</em> berada di database <strong>MySQL</strong></p></li>
 <li><p>Data IRIS <em>sepal</em> berada di database <strong>PostgreSQL</strong></p></li>
 </ul>
-<p>#####<strong>Metode Pengumpulan</strong>
-Langkah untuk mengumpulkan data dilakukan menggunakan <strong>Python</strong> sebagai berikut:</p>
+</section>
+<section id="metode-pengumpulan">
+<h5><strong>Metode Pengumpulan</strong><a class="headerlink" href="#metode-pengumpulan" title="Link to this heading">#</a></h5>
+<p>Langkah untuk mengumpulkan data dilakukan menggunakan <strong>Python</strong> sebagai berikut:</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">pymysql</span></code></strong> : Digunakan untuk menghubungkan dan mengambil data dari MySQL.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">psycopg2</span></code></strong> : Digunakan untuk menghubungkan dan mengambil data dari PostgreSQL.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">pandas</span></code></strong> : Digunakan untuk membaca dan mengolah data setelah diambil dari database.</p></li>
 </ul>
-<p>####<strong>Proses Mendeteksi Outlier</strong></p>
-<p>#####<strong>1. Menghubungkan Data dari MySQL dan PostgreSQL</strong>
-a. Install library yang diperlukan</p>
+</section>
+</section>
+<section id="proses-mendeteksi-outlier">
+<h4><strong>Proses Mendeteksi Outlier</strong><a class="headerlink" href="#proses-mendeteksi-outlier" title="Link to this heading">#</a></h4>
+<section id="menghubungkan-data-dari-mysql-dan-postgresql">
+<h5><strong>1. Menghubungkan Data dari MySQL dan PostgreSQL</strong><a class="headerlink" href="#menghubungkan-data-dari-mysql-dan-postgresql" title="Link to this heading">#</a></h5>
+<p>a. Install library yang diperlukan</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">sqlalchemy</span></code></strong> : Library yang digunakan untuk ORM (Object Relation Mapping) dan memudahkan untuk interaksi dengan database menggunakan objek Python tanpa perlu menulis SQL secara langsung.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code></strong> : Digunakan untuk mengelola variabel lingkungan (.env file) dalam Python.</p></li>
@@ -681,7 +746,9 @@ Data dari PostgreSQL:
 </div>
 </div>
 </div>
-<p>#####<strong>2. Menggabungkan data</strong></p>
+</section>
+<section id="menggabungkan-data">
+<h5><strong>2. Menggabungkan data</strong><a class="headerlink" href="#menggabungkan-data" title="Link to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menggabungkan data</span>
@@ -712,8 +779,10 @@ Data dari PostgreSQL:
 </div>
 </div>
 </div>
-<p>#####<strong>3. Menghitung jarak menggunakan Euclidean Distance</strong>
-a. <strong><code class="docutils literal notranslate"><span class="pre">euclidean</span></code></strong> : Digunakan untuk menghitung jarak euclidean antara dua titik dalam ruang berdimensi apapun.</p>
+</section>
+<section id="menghitung-jarak-menggunakan-euclidean-distance">
+<h5><strong>3. Menghitung jarak menggunakan Euclidean Distance</strong><a class="headerlink" href="#menghitung-jarak-menggunakan-euclidean-distance" title="Link to this heading">#</a></h5>
+<p>a. <strong><code class="docutils literal notranslate"><span class="pre">euclidean</span></code></strong> : Digunakan untuk menghitung jarak euclidean antara dua titik dalam ruang berdimensi apapun.</p>
 <p>b. <strong><code class="docutils literal notranslate"><span class="pre">IPython.display</span></code></strong> : Digunakan untuk menampilkan output dalam format html di Jupyter Notebook.</p>
 <p>c. <strong><code class="docutils literal notranslate"><span class="pre">numpy</span></code></strong> : Digunakan untuk mengelola data dalam bentuk array dan melakukan komputasi numerik dengan cepat.</p>
 <div class="cell docutils container">
@@ -2425,7 +2494,9 @@ a. <strong><code class="docutils literal notranslate"><span class="pre">euclidea
   </tbody>
 </table></div></div>
 </div>
-<p>#####<strong>4. Menghitung frekuensi oulier</strong></p>
+</section>
+<section id="menghitung-frekuensi-oulier">
+<h5><strong>4. Menghitung frekuensi oulier</strong><a class="headerlink" href="#menghitung-frekuensi-oulier" title="Link to this heading">#</a></h5>
 <p>Dari perhitungan tersebut, terdapat 10 outlier dengan menggunakan fungsi sum.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2441,7 +2512,9 @@ a. <strong><code class="docutils literal notranslate"><span class="pre">euclidea
 </div>
 </div>
 </div>
-<p>#####<strong>5. Mengurutkan jarak dari terkecil ke terbesar</strong></p>
+</section>
+<section id="mengurutkan-jarak-dari-terkecil-ke-terbesar">
+<h5><strong>5. Mengurutkan jarak dari terkecil ke terbesar</strong><a class="headerlink" href="#mengurutkan-jarak-dari-terkecil-ke-terbesar" title="Link to this heading">#</a></h5>
 <p>Menampilkan hasil jarak dari terkecil ke terbesar</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2610,7 +2683,9 @@ a. <strong><code class="docutils literal notranslate"><span class="pre">euclidea
 </div>
 </div>
 </div>
-<p>#####<strong>6. Tabel outlier</strong></p>
+</section>
+<section id="tabel-outlier">
+<h5><strong>6. Tabel outlier</strong><a class="headerlink" href="#tabel-outlier" title="Link to this heading">#</a></h5>
 <p>Tampilan untuk tabel outlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2749,7 +2824,9 @@ a. <strong><code class="docutils literal notranslate"><span class="pre">euclidea
   </tbody>
 </table></div></div>
 </div>
-<p>#####<strong>7. Visualisasi outlier</strong></p>
+</section>
+<section id="visualisasi-outlier">
+<h5><strong>7. Visualisasi outlier</strong><a class="headerlink" href="#visualisasi-outlier" title="Link to this heading">#</a></h5>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></strong> : Digunakan untuk membuat berbagai jenis grafik dalam Python.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">seaborn</span></code></strong> : Digunakan untuk analisis data statistik karena memiliki fungi membuat grafik mirip seperti <strong><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></strong>.</p></li>
@@ -2827,6 +2904,11 @@ Index([19, 21, 30, 35, 40, 58, 61, 63, 105, 107, 108, 113, 133, 149, 150], dtype
 </div>
 </div>
 </div>
+</section>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2864,7 +2946,7 @@ Index([19, 21, 30, 35, 40, 58, 61, 63, 105, 107, 108, 113, 133, 149, 150], dtype
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title"><strong>Memahami Data</strong></p>
       </div>
     </a>
 </div>
@@ -2882,9 +2964,41 @@ Index([19, 21, 30, 35, 40, 58, 61, 63, 105, 107, 108, 113, 133, 149, 150], dtype
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-dalam-data-mining"><strong>Outlier dalam Data Mining</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-nearst-neighbor"><strong>Alur Kerja Nearst Neighbor</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-jumlah-tetangga-terdekat-k-yang-akan-dipilih"><strong>1. Menentukan jumlah tetangga terdekat(k) yang akan dipilih</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-antara-data-uji-dengan-semua-data-latih"><strong>2. Hitung jarak antara data uji dengan semua data latih</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-data-latih-berdasarkan-jarak-dari-yang-terdekat-ke-yang-terjauh-dengan-data-uji"><strong>3. Mengurutkan data latih berdasarkan jarak dari yang terdekat ke yang terjauh dengan data uji</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pilih-k-data-dengan-jarak-terdekat-dari-data-uji"><strong>4. Pilih (k) data dengan jarak terdekat dari data uji</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-frekuensi-masing-masing-kategori-pada-k-data-yang-telah-dipilih"><strong>5. Hitung frekuensi masing-masing kategori pada (k) data yang telah dipilih</strong></a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-kasus"><strong>Contoh Kasus</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-penyelesaian-untuk-g-30-75"><strong>Langkah-langkah Penyelesaian untuk G (30,75)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-data-outlier-dalam-data-iris"><strong>Mencari Data Outlier dalam Data Iris</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data-dari-database"><strong>Mengambil Data dari Database</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi"><strong>Lokasi</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-pengumpulan"><strong>Metode Pengumpulan</strong></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mendeteksi-outlier"><strong>Proses Mendeteksi Outlier</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-data-dari-mysql-dan-postgresql"><strong>1. Menghubungkan Data dari MySQL dan PostgreSQL</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menggabungkan-data"><strong>2. Menggabungkan data</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-jarak-menggunakan-euclidean-distance"><strong>3. Menghitung jarak menggunakan Euclidean Distance</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-frekuensi-oulier"><strong>4. Menghitung frekuensi oulier</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#mengurutkan-jarak-dari-terkecil-ke-terbesar"><strong>5. Mengurutkan jarak dari terkecil ke terbesar</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-outlier"><strong>6. Tabel outlier</strong></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-outlier"><strong>7. Visualisasi outlier</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
   </nav></div>
 
 </div></div>
