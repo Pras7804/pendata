@@ -392,14 +392,22 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah"><strong>Langkah-Langkah</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-probabilitas-awal-p-y"><strong>1. Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span></strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-likelihood-p-x-y"><strong>2. Hitung Likelihood <span class="math notranslate nohighlight">\(P(X|Y)\)</span></strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-likelihood-p-x-tidak"><strong>a. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-likelihood-p-x-ya"><strong>b. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-hitung-p-x"><strong>c. Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hitung-posterior-probability"><strong>d. Hitung Posterior Probability</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-kelas"><strong>4. Prediksi Kelas</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-iris"><strong>Implementasi pada Data Iris</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-outlier-dari-data"><strong>Memisahkan Outlier dari Data</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-akurasi-dari-data"><strong>Menghitung Akurasi dari Data</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-bayes"><strong>Implementasi Naive Bayes</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-iris"><strong>Implementasi pada Data Iris</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-outlier-dari-data"><strong>Memisahkan Outlier dari Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-akurasi-dari-data"><strong>Menghitung Akurasi dari Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Naive Bayes</strong></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -461,27 +469,13 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Persiapan Data:</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Pisahkan data menjadi fitur $(X)$ dan label $(Y)$.
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span>:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Hitung frekuensi setiap kelas dalam dataset
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Hitung Likelihood <span class="math notranslate nohighlight">\((P(X|Y))\)</span>:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Untuk setiap fitur, hitung probabilitas kemunculannya dalam setiap kelas.
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Gabungkan dengan Teorema Bayes:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Menggunakan rumus
-</pre></div>
-</div>
+<p>Pisahkan data menjadi fitur <span class="math notranslate nohighlight">\((X)\)</span> dan label <span class="math notranslate nohighlight">\((Y)\)</span>.
+2.   Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span>:</p>
+<p>Hitung frekuensi setiap kelas dalam dataset
+3.   Hitung Likelihood <span class="math notranslate nohighlight">\((P(X|Y))\)</span>:</p>
+<p>Untuk setiap fitur, hitung probabilitas kemunculannya dalam setiap kelas.
+4.   Gabungkan dengan Teorema Bayes:</p>
+<p>Menggunakan rumus</p>
 <div class="math notranslate nohighlight">
 \[
   P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}
@@ -489,9 +483,7 @@ document.write(`
 <ol class="arabic simple" start="5">
 <li><p>Prediksi Kelas:</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Pilih kelas dengan nilai $P(X|Y)$ Tertinggi.
-</pre></div>
-</div>
+<p>Pilih kelas dengan nilai <span class="math notranslate nohighlight">\(P(X|Y)\)</span> Tertinggi.</p>
 </section>
 <section id="contoh-kasus-dalam-data-numerik">
 <h2><strong>Contoh Kasus dalam Data Numerik</strong><a class="headerlink" href="#contoh-kasus-dalam-data-numerik" title="Link to this heading">#</a></h2>
@@ -586,26 +578,86 @@ P(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}
 P(Y \mid X) = \frac{P(X \mid Y)\, P(Y)}{P(X)}
 \)</span></p>
 <p>Karena (P(X)) adalah konstanta pembagi (sama untuk semua kelas), kita fokus pada <strong>pembilang</strong> saja:</p>
-<ul class="simple">
-<li><p><strong>Skor untuk Kelas Tidak</strong>:</p></li>
-</ul>
+<section id="a-likelihood-p-x-tidak">
+<h4><strong>a. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span><a class="headerlink" href="#a-likelihood-p-x-tidak" title="Link to this heading">#</a></h4>
+<p>Misalkan dari hasil perhitungan Gaussian (langkah 3) kita dapatkan:</p>
 <p><span class="math notranslate nohighlight">\(
-P(X_1 = 168, X_2 = 62 \mid \text{Tidak}) \times P(\text{Tidak})
-\quad \underbrace{\text{(likelihood)}}_{\quad} \times \underbrace{\text{(prior)}}_{\quad}
+P(X_1 = 168 \mid \text{Tidak}) \approx 0.014
+\quad \text{dan} \quad
+P(X_2 = 62 \mid \text{Tidak}) \approx 0.031
 \)</span></p>
-<ul class="simple">
-<li><p><strong>Skor untuk Kelas Ya</strong>:</p></li>
-</ul>
+<p>Sehingga,</p>
 <p><span class="math notranslate nohighlight">\(
-P(X_1 = 168, X_2 = 62 \mid \text{Ya}) \times P(\text{Ya})
-\quad \underbrace{\text{(likelihood)}}_{\quad} \times \underbrace{\text{(prior)}}_{\quad}
+P(X_1 = 168, X_2 = 62 \mid \text{Tidak})
+= P(X_1 = 168 \mid \text{Tidak})
+  \times P(X_2 = 62 \mid \text{Tidak})
+= 0.014 \times 0.031
+= 0.000434
 \)</span></p>
-<p>Bandingkan kedua skor tersebut</p>
+<p>Prior <span class="math notranslate nohighlight">\(P(\text{Tidak})\)</span> (dari data awal) adalah:</p>
+<p><span class="math notranslate nohighlight">\(
+P(\text{Tidak}) = \frac{2}{5} = 0.4
+\)</span></p>
+<p>Maka,</p>
+<p><span class="math notranslate nohighlight">\(
+\text{Skor}_\text{Tidak}
+= 0.000434 \times 0.4
+= 0.0001736
+\)</span></p>
+</section>
+<section id="b-likelihood-p-x-ya">
+<h4><strong>b. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span><a class="headerlink" href="#b-likelihood-p-x-ya" title="Link to this heading">#</a></h4>
+<p>Misalkan untuk kelas <strong>Ya</strong>
+<span class="math notranslate nohighlight">\(
+P(X_1 = 168 \mid \text{Ya}) \approx 0.0225
+\quad \text{dan} \quad
+P(X_2 = 62 \mid \text{Ya}) \approx 0.0193
+\)</span></p>
+<p>Sehingga,</p>
+<p><span class="math notranslate nohighlight">\(
+P(X_1 = 168, X_2 = 62 \mid \text{Ya})
+= 0.0225 \times 0.0193
+= 0.00043425
+\)</span></p>
+<p>Prior <span class="math notranslate nohighlight">\(P(\text{Ya})\)</span> adalah:</p>
+<p><span class="math notranslate nohighlight">\(
+P(\text{Ya}) = \frac{3}{5} = 0.6
+\)</span></p>
+<p>Maka,</p>
+<p><span class="math notranslate nohighlight">\(
+\text{Skor}_\text{Ya}
+= 0.00043425 \times 0.6
+= 0.00026055
+\)</span></p>
+</section>
+<section id="c-hitung-p-x">
+<h4><strong>c. Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span><a class="headerlink" href="#c-hitung-p-x" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(
+P(X)
+= \text{Skor}_\text{Tidak} + \text{Skor}_\text{Ya}
+= 0.0001736 + 0.00026055
+= 0.00043415 \quad (\text{kira-kira})
+\)</span></p>
+</section>
+<section id="d-hitung-posterior-probability">
+<h4><strong>d. Hitung Posterior Probability</strong><a class="headerlink" href="#d-hitung-posterior-probability" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(
+P(\text{Tidak} \mid X)
+= \frac{\text{Skor}_\text{Tidak}}{P(X)}
+= \frac{0.0001736}{0.00043415}
+\approx 0.40
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+P(\text{Ya} \mid X)
+= \frac{\text{Skor}_\text{Ya}}{P(X)}
+= \frac{0.00026055}{0.00043415}
+\approx 0.60
+\)</span></p>
+</section>
 </section>
 <section id="prediksi-kelas">
 <h3><strong>4. Prediksi Kelas</strong><a class="headerlink" href="#prediksi-kelas" title="Link to this heading">#</a></h3>
-<p>Pilih kelas dengan nilai <span class="math notranslate nohighlight">\(P(Y|X)\)</span> (atau skor) terbesar.
-Misalnya hasil akhirnya lebih besar untuk <strong>kelas Ya</strong>, MAka prediksi untuk (168, 62) adalah <strong>“Ya”</strong>.</p>
+<p>Karena <span class="math notranslate nohighlight">\(P (Ya|X)\)</span> lebih besar (0.60) dibandingkan <span class="math notranslate nohighlight">\(P( Tidak|X)\)</span> (0.40), kelas yang diprediksi untuk data <span class="math notranslate nohighlight">\(( X_1 = 168 , X_2 = 62 )\)</span> adalah “Ya”.</p>
 </section>
 </section>
 <section id="implementasi-pada-data-iris">
@@ -1053,9 +1105,8 @@ Data dari PostgreSQL:
   </div>
 </div></div>
 </div>
-</section>
 <section id="memisahkan-outlier-dari-data">
-<h2><strong>Memisahkan Outlier dari Data</strong><a class="headerlink" href="#memisahkan-outlier-dari-data" title="Link to this heading">#</a></h2>
+<h3><strong>Memisahkan Outlier dari Data</strong><a class="headerlink" href="#memisahkan-outlier-dari-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1416,7 +1467,7 @@ Iris-versicolor           5.7          2.8           4.1          1.3      1    
 <p>Hasil akhir kemudian dicetak, menampilkan keseluruhan data beserta ID dan kelas, serta menghitung dan mencetak jumlah outlier yang terdeteksi. Data yang dianggap inlier difilter ke dalam dataframe df_filtered, sedangkan data outlier disimpan dalam variabel outliers. Kode kemudian mencetak informasi mengenai data outlier, jumlah data yang tersisa setelah outlier dihapus, dan tampilan data yang tidak dianggap outlier.</p>
 </section>
 <section id="menghitung-akurasi-dari-data">
-<h2><strong>Menghitung Akurasi dari Data</strong><a class="headerlink" href="#menghitung-akurasi-dari-data" title="Link to this heading">#</a></h2>
+<h3><strong>Menghitung Akurasi dari Data</strong><a class="headerlink" href="#menghitung-akurasi-dari-data" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">train_test_split</span></code></strong> : Fungsi ini digunakan untuk membagi dataset menjadi data pelatihan (training) dan data pengujian (testing), sehingga dapat melatih model pada sebagian data dan mengevaluasi performanya pada data yang belum pernah dilihat sebelumnya.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">KFold</span></code></strong> : class yang menyediakan metode k-fold cross-validation ( teknik untuk membagi dataset )</p></li>
@@ -1633,8 +1684,8 @@ Iris-versicolor       1.00      1.00      1.00         8
 </div>
 </div>
 </section>
-<section id="implementasi-naive-bayes">
-<h2><strong>Implementasi Naive Bayes</strong><a class="headerlink" href="#implementasi-naive-bayes" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3><strong>Naive Bayes</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
@@ -1761,6 +1812,7 @@ Index: 14, True Label: Iris-virginica, Predicted: Iris-versicolor
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1835,14 +1887,22 @@ Index: 14, True Label: Iris-virginica, Predicted: Iris-versicolor
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah"><strong>Langkah-Langkah</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-probabilitas-awal-p-y"><strong>1. Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span></strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-likelihood-p-x-y"><strong>2. Hitung Likelihood <span class="math notranslate nohighlight">\(P(X|Y)\)</span></strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-likelihood-p-x-tidak"><strong>a. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-likelihood-p-x-ya"><strong>b. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-hitung-p-x"><strong>c. Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hitung-posterior-probability"><strong>d. Hitung Posterior Probability</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-kelas"><strong>4. Prediksi Kelas</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-iris"><strong>Implementasi pada Data Iris</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-outlier-dari-data"><strong>Memisahkan Outlier dari Data</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-akurasi-dari-data"><strong>Menghitung Akurasi dari Data</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-bayes"><strong>Implementasi Naive Bayes</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pada-data-iris"><strong>Implementasi pada Data Iris</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-outlier-dari-data"><strong>Memisahkan Outlier dari Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-akurasi-dari-data"><strong>Menghitung Akurasi dari Data</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>Naive Bayes</strong></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
