@@ -392,13 +392,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah"><strong>Langkah-Langkah</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-probabilitas-awal-p-y"><strong>1. Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span></strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-likelihood-p-x-y"><strong>2. Hitung Likelihood <span class="math notranslate nohighlight">\(P(X|Y)\)</span></strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-likelihood-p-x-tidak"><strong>a. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-likelihood-p-x-ya"><strong>b. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-hitung-p-x"><strong>c. Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hitung-posterior-probability"><strong>d. Hitung Posterior Probability</strong></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-kelas"><strong>4. Prediksi Kelas</strong></a></li>
 </ul>
 </li>
@@ -469,12 +463,18 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Persiapan Data:</p></li>
 </ol>
-<p>Pisahkan data menjadi fitur <span class="math notranslate nohighlight">\((X)\)</span> dan label <span class="math notranslate nohighlight">\((Y)\)</span>.
-2.   Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span>:</p>
-<p>Hitung frekuensi setiap kelas dalam dataset
-3.   Hitung Likelihood <span class="math notranslate nohighlight">\((P(X|Y))\)</span>:</p>
-<p>Untuk setiap fitur, hitung probabilitas kemunculannya dalam setiap kelas.
-4.   Gabungkan dengan Teorema Bayes:</p>
+<p>Pisahkan data menjadi fitur <span class="math notranslate nohighlight">\((X)\)</span> dan label <span class="math notranslate nohighlight">\((Y)\)</span>.</p>
+<ol class="arabic simple" start="2">
+<li><p>Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span>:</p></li>
+</ol>
+<p>Hitung frekuensi setiap kelas dalam dataset</p>
+<ol class="arabic simple" start="3">
+<li><p>Hitung Likelihood <span class="math notranslate nohighlight">\((P(X|Y))\)</span>:</p></li>
+</ol>
+<p>Untuk setiap fitur, hitung probabilitas kemunculannya dalam setiap kelas.</p>
+<ol class="arabic simple" start="4">
+<li><p>Gabungkan dengan Teorema Bayes:</p></li>
+</ol>
 <p>Menggunakan rumus</p>
 <div class="math notranslate nohighlight">
 \[
@@ -578,8 +578,7 @@ P(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}
 P(Y \mid X) = \frac{P(X \mid Y)\, P(Y)}{P(X)}
 \)</span></p>
 <p>Karena (P(X)) adalah konstanta pembagi (sama untuk semua kelas), kita fokus pada <strong>pembilang</strong> saja:</p>
-<section id="a-likelihood-p-x-tidak">
-<h4><strong>a. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span><a class="headerlink" href="#a-likelihood-p-x-tidak" title="Link to this heading">#</a></h4>
+<p>a. <strong>Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span></p>
 <p>Misalkan dari hasil perhitungan Gaussian (langkah 3) kita dapatkan:</p>
 <p><span class="math notranslate nohighlight">\(
 P(X_1 = 168 \mid \text{Tidak}) \approx 0.014
@@ -604,9 +603,7 @@ P(\text{Tidak}) = \frac{2}{5} = 0.4
 = 0.000434 \times 0.4
 = 0.0001736
 \)</span></p>
-</section>
-<section id="b-likelihood-p-x-ya">
-<h4><strong>b. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span><a class="headerlink" href="#b-likelihood-p-x-ya" title="Link to this heading">#</a></h4>
+<p>b. <strong>Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span></p>
 <p>Misalkan untuk kelas <strong>Ya</strong>
 <span class="math notranslate nohighlight">\(
 P(X_1 = 168 \mid \text{Ya}) \approx 0.0225
@@ -629,31 +626,26 @@ P(\text{Ya}) = \frac{3}{5} = 0.6
 = 0.00043425 \times 0.6
 = 0.00026055
 \)</span></p>
-</section>
-<section id="c-hitung-p-x">
-<h4><strong>c. Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span><a class="headerlink" href="#c-hitung-p-x" title="Link to this heading">#</a></h4>
+<p>c. <strong>Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span></p>
 <p><span class="math notranslate nohighlight">\(
 P(X)
 = \text{Skor}_\text{Tidak} + \text{Skor}_\text{Ya}
 = 0.0001736 + 0.00026055
 = 0.00043415 \quad (\text{kira-kira})
 \)</span></p>
-</section>
-<section id="d-hitung-posterior-probability">
-<h4><strong>d. Hitung Posterior Probability</strong><a class="headerlink" href="#d-hitung-posterior-probability" title="Link to this heading">#</a></h4>
-<p><span class="math notranslate nohighlight">\(
-P(\text{Tidak} \mid X)
+<p>d. <strong>Hitung Posterior Probability</strong>
+$</p>
+<p>P(\text{Tidak} \mid X)
 = \frac{\text{Skor}_\text{Tidak}}{P(X)}
 = \frac{0.0001736}{0.00043415}
 \approx 0.40
-\)</span></p>
+$</p>
 <p><span class="math notranslate nohighlight">\(
 P(\text{Ya} \mid X)
 = \frac{\text{Skor}_\text{Ya}}{P(X)}
 = \frac{0.00026055}{0.00043415}
 \approx 0.60
 \)</span></p>
-</section>
 </section>
 <section id="prediksi-kelas">
 <h3><strong>4. Prediksi Kelas</strong><a class="headerlink" href="#prediksi-kelas" title="Link to this heading">#</a></h3>
@@ -1887,13 +1879,7 @@ Index: 14, True Label: Iris-virginica, Predicted: Iris-versicolor
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah"><strong>Langkah-Langkah</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-probabilitas-awal-p-y"><strong>1. Hitung Probabilitas Awal <span class="math notranslate nohighlight">\((P(Y))\)</span></strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-likelihood-p-x-y"><strong>2. Hitung Likelihood <span class="math notranslate nohighlight">\(P(X|Y)\)</span></strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-likelihood-p-x-tidak"><strong>a. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Tidak)\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-likelihood-p-x-ya"><strong>b. Likelihood</strong> <span class="math notranslate nohighlight">\(P(X|Ya)\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-hitung-p-x"><strong>c. Hitung</strong> <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hitung-posterior-probability"><strong>d. Hitung Posterior Probability</strong></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gabungkan-dengan-teorema-bayes"><strong>3. Gabungkan dengan Teorema Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-kelas"><strong>4. Prediksi Kelas</strong></a></li>
 </ul>
 </li>
