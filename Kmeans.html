@@ -458,27 +458,25 @@ document.write(`
 <section id="evaluasi-hasil-clustering">
 <h2><strong>Evaluasi Hasil Clustering</strong><a class="headerlink" href="#evaluasi-hasil-clustering" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Inertia:</strong> Jumlah kuadrat jarak antara titik dan centroid.
-$<span class="math notranslate nohighlight">\(
+<li><p><strong>Inertia:</strong> Jumlah kuadrat jarak antara titik dan centroid.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
 \text{Inertia} = \sum_{i=1}^{n} \left\| x_i - \mu_{c_i} \right\|^2
-\)</span>$
-dimana:</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(x_i\)</span>: TItik data ke-<em>i</em></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mu_{c_i}\)</span>: Centroid dari cluster tempat <span class="math notranslate nohighlight">\(x_i\)</span> berada</p></li>
+\]</div>
+<p>dimana:
+- <span class="math notranslate nohighlight">\(x_i\)</span>: TItik data ke-<em>i</em>
+- <span class="math notranslate nohighlight">\(\mu_{c_i}\)</span>: Centroid dari cluster tempat <span class="math notranslate nohighlight">\(x_i\)</span> berada</p>
+<ul class="simple">
+<li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.</p></li>
 </ul>
-</li>
-<li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.
-$<span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
 s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
-\)</span>$
-Keterangan:</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(a(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik lain dalam <strong>klaster yang sama</strong></p></li>
-<li><p><span class="math notranslate nohighlight">\(b(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik dalam <strong>klaster terdekat (tetangga)</strong></p></li>
-</ul>
-</li>
-</ul>
+\]</div>
+<p>Keterangan:
+- <span class="math notranslate nohighlight">\(a(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik lain dalam <strong>klaster yang sama</strong>
+- <span class="math notranslate nohighlight">\(b(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik dalam <strong>klaster terdekat (tetangga)</strong></p>
 </section>
 <section id="contoh-kasus">
 <h2><strong>Contoh Kasus</strong><a class="headerlink" href="#contoh-kasus" title="Link to this heading">#</a></h2>
