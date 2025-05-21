@@ -492,32 +492,30 @@ document.write(`
 </section>
 <section id="evaluasi-hasil-clustering">
 <h2><strong>Evaluasi Hasil Clustering</strong><a class="headerlink" href="#evaluasi-hasil-clustering" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Inertia:</strong> Jumlah kuadrat jarak antara titik dan centroid.</p></li>
-</ul>
+<ul>
+<li><p><strong>Inertia:</strong> Jumlah kuadrat jarak antara titik dan centroid.</p>
 <div class="math notranslate nohighlight">
 \[
-  \text{Inertia} = \sum_{i=1}^{n} \left\| x_i - \mu_{c_i} \right\|^2
-  \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
-
-- $x_i$: TItik data ke-*i*
-- $\mu_{c_i}$: Centroid dari cluster tempat $x_i$ berada
-</pre></div>
-</div>
+    \text{Inertia} = \sum_{i=1}^{n} \left\| x_i - \mu_{c_i} \right\|^2
+    \]</div>
+<p>dimana:</p>
 <ul class="simple">
-<li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span>: TItik data ke-<em>i</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{c_i}\)</span>: Centroid dari cluster tempat <span class="math notranslate nohighlight">\(x_i\)</span> berada</p></li>
 </ul>
+</li>
+<li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.</p>
 <div class="math notranslate nohighlight">
 \[
-  s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
-  \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Keterangan:
-
-- $a(i)$: Rata-rata jarak titik *i* ke semua titik lain dalam **klaster yang sama**
-- $b(i)$: Rata-rata jarak titik *i* ke semua titik dalam **klaster terdekat (tetangga)**
-</pre></div>
-</div>
+    s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
+    \]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik lain dalam <strong>klaster yang sama</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(b(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik dalam <strong>klaster terdekat (tetangga)</strong></p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section id="contoh-kasus">
 <h2><strong>Contoh Kasus</strong><a class="headerlink" href="#contoh-kasus" title="Link to this heading">#</a></h2>
@@ -697,10 +695,10 @@ C2 = \sqrt{(5 - 5)^2 + (4 - 2)^2} = \sqrt{4} = 2
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas in /home/codespace/.local/lib/python3.12/site-packages (2.2.3)
-Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
 Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
@@ -718,9 +716,7 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sqlalchemy in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.0.39)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: greenlet!=0.4.17 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from sqlalchemy) (3.1.1)
+Requirement already satisfied: greenlet!=0.4.17 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from sqlalchemy) (3.1.1)
 Requirement already satisfied: typing-extensions&gt;=4.6.0 in /home/codespace/.local/lib/python3.12/site-packages (from sqlalchemy) (4.12.2)
 </pre></div>
 </div>
@@ -1067,19 +1063,19 @@ Name: count, dtype: int64
 <h5><strong>Mengapa Perlu Redukasi Dimensi (PCA)?</strong><a class="headerlink" href="#mengapa-perlu-redukasi-dimensi-pca" title="Link to this heading">#</a></h5>
 <p>Masalah utamanya ada pada dataset iris yang memiliki <strong>4 dimensi (fitur)</strong>. Walau tidak terlalu banyak, ada dua alasan kuat mengapa tetap pertimbangkan PCA:</p>
 <ol class="arabic simple">
-<li><p>Visualisasi</p></li>
+<li><p>Visualisasi</p>
+<ul class="simple">
+<li><p>Data berdimensi tinggi sulit divisualisasikan</p></li>
+<li><p>PCA memungkinkan kita menampilkan data dalam 2D atau 3D tanpa kehilangan terlalu banyak informasi.</p></li>
+</ul>
+</li>
+<li><p>Mengurangi Noise atau Redundansi</p>
+<ul class="simple">
+<li><p>PCA menggabungkan fitur-fitur yang memiliki korelasi tinggi.</p></li>
+<li><p>Bisa membuat struktur klaster lebih jelas dan efisiensi untuk diproses.</p></li>
+</ul>
+</li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   Data berdimensi tinggi sulit divisualisasikan
-*   PCA memungkinkan kita menampilkan data dalam 2D atau 3D tanpa kehilangan terlalu banyak informasi.
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Mengurangi Noise atau Redundansi</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   PCA menggabungkan fitur-fitur yang memiliki korelasi tinggi.
-*   Bisa membuat struktur klaster lebih jelas dan efisiensi untuk diproses.
-</pre></div>
-</div>
 <p>dalam dataset iris, kombinasi <code class="docutils literal notranslate"><span class="pre">petal_legth</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> sudah sangat kuat untuk membedakan kelas, jadi PCA dapat membantu menonjolkan informasi utama.</p>
 </section>
 <section id="pca-dengan-2-dimensi">
