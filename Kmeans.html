@@ -450,7 +450,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means"><strong>Fuzzy C-Means</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-means"><strong>Konsep Dasar FUzzy C-Means</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciri-khas-fuzzy-c-means"><strong>Ciri Khas FUzzy C-Means</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -708,9 +707,7 @@ C2 = \sqrt{(5 - 5)^2 + (4 - 2)^2} = \sqrt{4} = 2
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas in /home/codespace/.local/lib/python3.12/site-packages (2.2.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
+Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
@@ -1622,12 +1619,35 @@ Mapping cluster ke label:
 <h1><strong>Fuzzy C-Means</strong><a class="headerlink" href="#fuzzy-c-means" title="Link to this heading">#</a></h1>
 <section id="konsep-dasar-fuzzy-c-means">
 <h2><strong>Konsep Dasar FUzzy C-Means</strong><a class="headerlink" href="#konsep-dasar-fuzzy-c-means" title="Link to this heading">#</a></h2>
-<p>termasuk dalam kategori unsupervised learning. Berbeda dengan metode clustering klasik seperti K-Means yang bersifat hard clustering (setiap data hanya boleh masuk ke satu cluster), Fuzzy C-Means (FCM) bersifat soft clustering, yaitu setiap data dapat menjadi anggota lebih dari satu cluster dengan derajat keanggotaan tertentu.</p>
+<p>Fuzzy C-Means Clustering adalah salah satu metode clustering (pengelompokan) data yang termasuk dalam kategori unsupervised learning. Berbeda dengan metode clustering klasik seperti K-Means yang bersifat hard clustering (setiap data hanya boleh masuk ke satu cluster), Fuzzy C-Means (FCM) bersifat soft clustering, yaitu setiap data dapat menjadi anggota lebih dari satu cluster dengan derajat keanggotaan tertentu.</p>
 <p><strong>Penjelasan Singkat:</strong></p>
 <ul class="simple">
 <li><p><strong>Fuzzy:</strong> Artinya “kabur” atau “tidak pasti”. Dalam konteks ini, setiap data memiliki derajat keanggotaan (membership degree) pada setiap cluster, dengan nilai antara 0 dan 1.</p></li>
 <li><p><strong>C-Means:</strong> “C” di sini mengacu pada jumlah cluster yang diinginkan (misal: 2, 3, dst.), dan “Means” berarti rata-rata (centroid) dari setiap cluster.</p></li>
 </ul>
+<p><strong>Ciri Khas Fuzzy C-Means:</strong></p>
+<ul class="simple">
+<li><p>Setiap data dapat menjadi anggota beberapa cluster dengan tingkat keanggotaan yang berbeda-beda.</p></li>
+<li><p>Hasil clustering lebih fleksibel dan cocok untuk data yang memang “kabur” atau tidak pasti cluster-nya.</p></li>
+<li><p>Sering digunakan di bidang pengolahan citra, medis, dan data mining.</p></li>
+</ul>
+<p><strong>Kelebihan:</strong></p>
+<ul class="simple">
+<li><p>Lebih fleksibel daripada K-Means karena mengizinkan keanggotaan parsial.</p></li>
+<li><p>Cocok untuk data yang tidak jelas batasnya antar kluster.</p></li>
+<li><p>Memberikan informasi ketidakpastian tentang keanggotaan kluster.</p></li>
+</ul>
+<p><strong>Kekurangan:</strong></p>
+<ul class="simple">
+<li><p>Sensitif terhadap inisialisasi awal.</p></li>
+<li><p>Perlu menentukan jumlah cluster c secara manual.</p></li>
+<li><p>Komputasi agak lambat untuk dataset besar.</p></li>
+<li><p>Hasil bisa berbeda-beda setiap kali running karena inisialisasi acak.</p></li>
+</ul>
+</section>
+<section id="algoritma-fuzzy-c-mean-clustering">
+<h2><strong>Algoritma fuzzy c-mean clustering</strong><a class="headerlink" href="#algoritma-fuzzy-c-mean-clustering" title="Link to this heading">#</a></h2>
+<p>Algoritma Fuzzy C-Means (FCM) adalah metode clustering yang menggunakan konsep fuzzy, di mana setiap data dapat menjadi anggota lebih dari satu cluster dengan derajat ketebalan yang berbeda, bernilai antara 0 sampai 1. Algoritma ini memungkinkan data memiliki keseluruhan parsial pada beberapa cluster, berbeda dengan metode clustering keras seperti K-Means yang hanya mengelompokkan data ke satu cluster saja.</p>
 <p><strong>Cara Kerja Fuzzy C-Means:</strong></p>
 <ol class="arabic simple">
 <li><p>Menentukan jumlah cluster (C) yang diinginkan.</p></li>
@@ -1636,17 +1656,89 @@ Mapping cluster ke label:
 <li><p>Memperbarui matriks keanggotaan berdasarkan jarak data ke centroid masing-masing cluster.</p></li>
 <li><p>Mengulangi proses 3 dan 4 sampai matriks keanggotaan konvergen (perubahan sangat kecil) atau mencapai jumlah iterasi maksimum.</p></li>
 </ol>
-</section>
-<section id="algoritma-fuzzy-c-mean-clustering">
-<h2><strong>Algoritma fuzzy c-mean clustering</strong><a class="headerlink" href="#algoritma-fuzzy-c-mean-clustering" title="Link to this heading">#</a></h2>
-</section>
-<section id="ciri-khas-fuzzy-c-means">
-<h2><strong>Ciri Khas FUzzy C-Means</strong><a class="headerlink" href="#ciri-khas-fuzzy-c-means" title="Link to this heading">#</a></h2>
+<p><strong>Fungsi Objektif Fuzzy C-Means</strong></p>
+<div class="math notranslate nohighlight">
+\[
+J_m = \sum_{i=1}^{n} \sum_{j=1}^{c} u_{ij}^m \cdot \|x_i - c_j\|^2
+\]</div>
+<p>keterangan:</p>
 <ul class="simple">
-<li><p>Setiap data dapat menjadi anggota beberapa cluster dengan tingkat keanggotaan yang berbeda-beda.</p></li>
-<li><p>Hasil clustering lebih fleksibel dan cocok untuk data yang memang “kabur” atau tidak pasti cluster-nya.</p></li>
-<li><p>Sering digunakan di bidang pengolahan citra, medis, dan data mining.</p></li>
+<li><p><span class="math notranslate nohighlight">\( j_m \)</span> : Nilai fungsi objektif yang ingin diminimalkan pada algoritma FCM.</p></li>
+<li><p><span class="math notranslate nohighlight">\( n \)</span> : Jumlah data (jumlah objek yang dikelompokkan).</p></li>
+<li><p><span class="math notranslate nohighlight">\( c \)</span> : Jumlah cluster yang ditentukan.</p></li>
+<li><p><span class="math notranslate nohighlight">\( u_{ij} \)</span> : Derajat keanggotaan data ke-i pada cluster ke-j (nilainya antara 0 dan 1).</p></li>
+<li><p><span class="math notranslate nohighlight">\( m \)</span> : Parameter fuzziness atau tingkat kekaburan (biasanya m), mengatur seberapa “fuzzy” keanggotaannya.</p></li>
+<li><p><span class="math notranslate nohighlight">\( x_i \)</span> : Vektor data ke-i.</p></li>
+<li><p><span class="math notranslate nohighlight">\( c_j \)</span> : Pusat (centroid) cluster ke-j.</p></li>
+<li><p><span class="math notranslate nohighlight">\( |x_i \)</span> : Jarak kuadrat (biasanya Euclidean) antara data ke-i dan centroid cluster ke-j.</p></li>
 </ul>
+<p><strong>Langkah-langkah Algoritma FCM</strong></p>
+<ol class="arabic simple">
+<li><p>Inisialisasi</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+  \sum_{i=1}^{c} u_{ik} = 1, \quad \forall k
+  \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( u_{ik} \)</span> adalah derajat keanggotaan data ke-k pada cluster ke-i.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \sum_{i=1}^{c} u_{ik} \)</span> berarti jumlah seluruh derajat keanggotaan data ke-k ke semua cluster.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \forall k \)</span> artinya aturan ini berlaku untuk setiap data k.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Hitung pusat kluster <span class="math notranslate nohighlight">\( V \)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+  v_i = \frac{\sum_{k=1}^{n} u_{ik}^m \, x_k}{\sum_{k=1}^{n} u_{ik}^m}
+  \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
+- $ v_i $ adalah pusat (centroid) klaster ke-i.
+- $ n $ adalah jumlah data.
+- $ u_{ik} $ adalah derajat keanggotaan data ke-k pada klaster ke-i.
+- $ m $ adalah parameter fuzziness (biasanya m).
+- $ x_k $ adalah data ke-k.
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Update keanggotaan <span class="math notranslate nohighlight">\( U \)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+  u_{ik} = \frac{1}{\sum_{j=1}^{c} \left( \frac{ \| x_k - v_i \| }{ \| x_k - v_j \| } \right)^{\frac{2}{m-1}} }
+  \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
+- $ u_{ik} $ Derajat keanggotaan data ke-(k) pada cluster ke-(i).
+- $ x_k $ Data ke-(k).
+- $ v_i $ Pusat (centroid) cluster ke-(i).
+- $ v_j $ Pusat (centroid) cluster ke-(j), untuk semua cluster (j = 1 2, ..., c).
+- $ m $ Parameter fuzziness (biasanya (m = 2)), mengatur tingkat “kekaburan” keanggotaan.
+- $ | $ Jarak (biasanya Euclidean) antara data ke-(k) dan pusat cluster ke-(i).
+- $ c $ Jumlah cluster
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Cek konvergensi</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Hintung selisih antara matriks keanggotaan sebelum dan sesudah update.
+- Jika perubahan &lt; toleeransi $ (\epsilon) $, hentikan proses.
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Iterasi ulang</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- kembali ke langkah 2 sampai algoritma konvergen.
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Tentukan kluster akhir</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Untuk setiap data $ x_k $, tentukan kluster utamanya berdasarkan nilai $ u_{ik} $ tertangga.
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -1770,7 +1862,6 @@ Mapping cluster ke label:
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means"><strong>Fuzzy C-Means</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-means"><strong>Konsep Dasar FUzzy C-Means</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciri-khas-fuzzy-c-means"><strong>Ciri Khas FUzzy C-Means</strong></a></li>
 </ul>
 </li>
 </ul>
