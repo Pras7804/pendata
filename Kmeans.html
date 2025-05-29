@@ -450,6 +450,9 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means"><strong>Fuzzy C-Means</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-means"><strong>Konsep Dasar FUzzy C-Means</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-manual-perhitungan-fuzzy-c-means-clustering"><strong>Contoh manual perhitungan fuzzy c-means clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implmentasi-python"><strong>implmentasi python</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster"><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -707,7 +710,9 @@ C2 = \sqrt{(5 - 5)^2 + (4 - 2)^2} = \sqrt{4} = 2
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas in /home/codespace/.local/lib/python3.12/site-packages (2.2.3)
-Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.26.0 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.2.0)
 Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
 Requirement already satisfied: pytz&gt;=2020.1 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
 Requirement already satisfied: tzdata&gt;=2022.7 in /home/codespace/.local/lib/python3.12/site-packages (from pandas) (2024.2)
@@ -721,12 +726,17 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2-binary in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.9.10)
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.1.1</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sqlalchemy in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.0.39)
-Requirement already satisfied: greenlet!=0.4.17 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from sqlalchemy) (3.1.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: greenlet!=0.4.17 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from sqlalchemy) (3.1.1)
 Requirement already satisfied: typing-extensions&gt;=4.6.0 in /home/codespace/.local/lib/python3.12/site-packages (from sqlalchemy) (4.12.2)
 </pre></div>
 </div>
@@ -1740,6 +1750,385 @@ J_m = \sum_{i=1}^{n} \sum_{j=1}^{c} u_{ij}^m \cdot \|x_i - c_j\|^2
 </pre></div>
 </div>
 </section>
+<section id="contoh-manual-perhitungan-fuzzy-c-means-clustering">
+<h2><strong>Contoh manual perhitungan fuzzy c-means clustering</strong><a class="headerlink" href="#contoh-manual-perhitungan-fuzzy-c-means-clustering" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>x1</p></th>
+<th class="head"><p>x2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Langkah 1: Inisialisasi</strong></p>
+<ul class="simple">
+<li><p>Jumlah kluster (c): misal, ambil 2 (c=2)</p></li>
+<li><p>Fuzzifier (m): Biasanya 2</p></li>
+<li><p>Inisialisasi matriks keanggotaan <span class="math notranslate nohighlight">\( (u) \)</span></p></li>
+<li><p>Buat matriks keanggotaan acak (setiap baris totalnya 1):</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>u1</p></th>
+<th class="head"><p>u2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.6</p></td>
+<td><p>0.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.5</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0.4</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0.3</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0.2</p></td>
+<td><p>0.8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Langkah 2: Hitung pusat klaster <span class="math notranslate nohighlight">\( V_1 \)</span> dan <span class="math notranslate nohighlight">\( V_2 \)</span></strong></p>
+<p>a. Hitung <span class="math notranslate nohighlight">\( u_{ik}^2 \)</span></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>u1</p></th>
+<th class="head"><p>u1²</p></th>
+<th class="head"><p>u2</p></th>
+<th class="head"><p>u2²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.6</p></td>
+<td><p>0.36</p></td>
+<td><p>0.4</p></td>
+<td><p>0.16</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.5</p></td>
+<td><p>0.25</p></td>
+<td><p>0.5</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0.4</p></td>
+<td><p>0.16</p></td>
+<td><p>0.6</p></td>
+<td><p>0.36</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0.3</p></td>
+<td><p>0.09</p></td>
+<td><p>0.7</p></td>
+<td><p>0.49</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0.2</p></td>
+<td><p>0.04</p></td>
+<td><p>0.8</p></td>
+<td><p>0.64</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>b. Hitung <span class="math notranslate nohighlight">\( V_1 \)</span></p>
+<p>Hitung pembilang:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( x1: \)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( 0.36×1+0.25×2+0.16×3+0.09×6+0.04×7=0.36+0.5+0.48+0.54+0.28=2.16\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( x2: \)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( 0.36×2+0.25×3+0.16×4+0.09×7+0.04×8=0.72+0.75+0.64+0.63+0.32=3.06\)</span></p>
+<p>Hitung penyebut:</p>
+<p><span class="math notranslate nohighlight">\( 0.36+0.25+0.16+0.09+0.04=0.90 \)</span></p>
+<div class="math notranslate nohighlight">
+\[ ( V_1 = \left( \frac{2.16}{0.90}, \frac{3.06}{0.90} \right) = (2.4, 3.4)  \]</div>
+<p>c. Hitung <span class="math notranslate nohighlight">\( V_2 \)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( x1: \)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( 0.16×1+0.25×2+0.36×3+0.49×6+0.64×7=0.16+0.5+1.08+2.94+4.48=9.16 \)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( x2: \)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( 0.16×2+0.25×3+0.36×4+0.49×7+0.64×8=0.32+0.75+1.44+3.43+5.12=11.06 \)</span></p>
+<ul class="simple">
+<li><p>Penyebut:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( 0.16+0.25+0.36+0.49+0.64=1.90 \)</span></p>
+<div class="math notranslate nohighlight">
+\[  V_2 = \left( \frac{9.16}{1.90}, \frac{11.06}{1.90} \right) \approx (4.82, 5.82) \]</div>
+<p>Pusat Cluster untuk iterasi-1</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( V_1 = (2.4, 3.4)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( V_2 = (4.82, 5.82) \)</span></p></li>
+</ul>
+<p><strong>Langkah 3: Update derajat keanggotaan baru</strong></p>
+<div class="math notranslate nohighlight">
+\[
+u_{ik} = \frac{1}{\sum_{j=1}^{c} \left( \frac{ \| x_k - v_i \| }{ \| x_k - v_j \| } \right)^{\frac{2}{m-1}} }
+\]</div>
+<p>karena m = 2, pangkatnya menjadi 2</p>
+<p>Contoh hitung <span class="math notranslate nohighlight">\( u_{11} \)</span> dan <span class="math notranslate nohighlight">\( u_{12} \)</span> untuk data pertama <span class="math notranslate nohighlight">\( x_1 \)</span> = (1, 2)</p>
+<p>a. Hitung jarak ke <span class="math notranslate nohighlight">\( V_1 \)</span> dan <span class="math notranslate nohighlight">\( V_2 \)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( d_{1V_1} = \sqrt{(1 - 2.4)^2 + (2 - 3.4)^2} = \sqrt{1.96 + 1.96} = \sqrt{3.92} \approx 1.98 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( d_{1V_2} = \sqrt{(1 - 4.82)^2 + (2 - 5.82)^2} = \sqrt{14.62 + 14.62} = \sqrt{29.24} \approx 5.41 \)</span></p></li>
+</ul>
+<p>b. Hitung <span class="math notranslate nohighlight">\( u_{11} \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{11} = \frac{1}{\left(\frac{1.98}{1.98}\right)^2 + \left(\frac{1.98}{5.41}\right)^2} = \frac{1}{1 + (0.366)^2} = \frac{1}{1 + 0.134} \approx 0.882
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+u_{12} = 1 - u_{11} = 0.118
+\]</div>
+<p>Derajat keanggotaan baru</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>x1</p></th>
+<th class="head"><p>x2</p></th>
+<th class="head"><p>u1 (C1)</p></th>
+<th class="head"><p>u2 (C2)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>0.882</p></td>
+<td><p>0.118</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>0.980</p></td>
+<td><p>0.020</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>0.902</p></td>
+<td><p>0.098</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>0.097</p></td>
+<td><p>0.903</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+<td><p>0.183</p></td>
+<td><p>0.817</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Langkah 4: Cek konvergensi</strong></p>
+<p>Hitung perubahan pusat cluster:</p>
+<ul>
+<li><p>Pusat lama:</p>
+<p><span class="math notranslate nohighlight">\( V_{old} = {(2.4, 3.4), (4,82, 5.82)} \)</span></p>
+</li>
+<li><p>Pusat baru setelah update:</p>
+<div class="math notranslate nohighlight">
+\[ V'_1 \approx (2.09, 3.09), \quad V'_2 \approx (6.38, 7.38) \]</div>
+</li>
+<li><p>Cek jarak perubahan:</p>
+<div class="math notranslate nohighlight">
+\[
+  \|V'_1 - V_1\| = \sqrt{(2.09 - 2.4)^2 + (3.09 - 3.4)^2} \approx 0.44
+  \]</div>
+<div class="math notranslate nohighlight">
+\[
+  \|V'_2 - V_2\| = \sqrt{(6.38 - 4.82)^2 + (7.38 - 5.82)^2} \approx 2.20
+  \]</div>
+<p>Karena perubahan &gt; ambang (misalnya 0.001), maka: belum konvergen -&gt; lanjutkan iterasi lagi.</p>
+</li>
+</ul>
+<p><strong>Langkah 5: Iterasi Ulang</strong></p>
+<p>Iterasi selanjutnya akan ulangi langkah yang sama hingga perubahan sangat kecil.</p>
+<p><strong>Langkah 6: Tentukan klaster akhir</strong></p>
+<p>Ambil klaster dengan nilai keanggotaan terbesar untuk tiap data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>u1 (C1)</p></th>
+<th class="head"><p>u2 (C2)</p></th>
+<th class="head"><p>Cluster</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.882</p></td>
+<td><p>0.118</p></td>
+<td><p><strong>1</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.980</p></td>
+<td><p>0.020</p></td>
+<td><p><strong>1</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0.902</p></td>
+<td><p>0.098</p></td>
+<td><p><strong>1</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0.097</p></td>
+<td><p>0.903</p></td>
+<td><p><strong>2</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0.183</p></td>
+<td><p>0.817</p></td>
+<td><p><strong>2</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Final Output:</strong></p>
+<ul class="simple">
+<li><p>Cluster1: x1, x2, x3 -&gt; kelompok data kecil.</p></li>
+<li><p>Cluster 2: x4, x5 -&gt; Kelompok data besar.</p></li>
+</ul>
+</section>
+<section id="implmentasi-python">
+<h2><strong>implmentasi python</strong><a class="headerlink" href="#implmentasi-python" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Data titik (X)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Inisialisasi matriks keanggotaan U secara manual</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Parameter</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Fungsi bantu</span>
+<span class="k">def</span> <span class="nf">compute_cluster_centers</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">um</span> <span class="o">=</span> <span class="n">U</span> <span class="o">**</span> <span class="n">m</span>
+    <span class="n">centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">um</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">centers</span>
+
+<span class="k">def</span> <span class="nf">update_membership_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">U_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+            <span class="n">dist_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-10</span>
+            <span class="n">denom</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">dist_ij</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
+            <span class="n">U_new</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="k">return</span> <span class="n">U_new</span>
+
+<span class="k">def</span> <span class="nf">has_converged</span><span class="p">(</span><span class="n">U_old</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U_new</span> <span class="o">-</span> <span class="n">U_old</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">epsilon</span>
+
+<span class="c1"># Algoritma FCM menggunakan U awal manual</span>
+<span class="k">def</span> <span class="nf">fuzzy_c_means_manual</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U_init</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">U_init</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">compute_cluster_centers</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+        <span class="n">U_new</span> <span class="o">=</span> <span class="n">update_membership_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">has_converged</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">U_new</span>
+    <span class="n">final_clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">final_clusters</span><span class="p">,</span> <span class="n">iteration</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Jalankan algoritma FCM dengan U manual</span>
+<span class="n">V_final</span><span class="p">,</span> <span class="n">U_final</span><span class="p">,</span> <span class="n">cluster_result</span><span class="p">,</span> <span class="n">total_iterations</span> <span class="o">=</span> <span class="n">fuzzy_c_means_manual</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pusat Klaster:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">V_final</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Derajat Keanggotaan:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">U_final</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hasil Klaster Akhir:&quot;</span><span class="p">,</span> <span class="n">cluster_result</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total Iterasi:&quot;</span><span class="p">,</span> <span class="n">total_iterations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pusat Klaster:
+ [[1.9661058 2.9661058]
+ [6.4879117 7.4879117]]
+
+Derajat Keanggotaan:
+ [[9.69938497e-01 3.00615031e-02]
+ [9.99943091e-01 5.69093707e-05]
+ [9.19236664e-01 8.07633357e-02]
+ [1.44196936e-02 9.85580306e-01]
+ [1.02422494e-02 9.89757751e-01]]
+
+Hasil Klaster Akhir: [0, 0, 0, 1, 1]
+
+Total Iterasi: 7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster">
+<h2><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong><a class="headerlink" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1862,6 +2251,9 @@ J_m = \sum_{i=1}^{n} \sum_{j=1}^{c} u_{ij}^m \cdot \|x_i - c_j\|^2
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means"><strong>Fuzzy C-Means</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-means"><strong>Konsep Dasar FUzzy C-Means</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-manual-perhitungan-fuzzy-c-means-clustering"><strong>Contoh manual perhitungan fuzzy c-means clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implmentasi-python"><strong>implmentasi python</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster"><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong></a></li>
 </ul>
 </li>
 </ul>
