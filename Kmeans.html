@@ -452,7 +452,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-manual-perhitungan-fuzzy-c-means-clustering"><strong>Contoh manual perhitungan fuzzy c-means clustering</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implmentasi-python"><strong>implmentasi python</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster"><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster"><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data-min-max-scaling"><strong>Normalisasi Data (Min-Max Scaling)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-parameter-dan-matriks-keanggotaan-u"><strong>Inisialisasi Parameter dan Matriks Keanggotaan U</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-pusat-klaster-centroid"><strong>Hitung Pusat Klaster (Centroid)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-matriks-keanggotaan-u"><strong>Update Matriks Keanggotaan U</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-fungsi-objektif-dan-cek-konvergensi"><strong>Hitung Fungsi Objektif dan Cek Konvergensi</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-hingga-konvergen-dalam-loop"><strong>Iterasi Hingga Konvergen (dalam loop)</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -512,12 +520,11 @@ document.write(`
 \[
   \text{Inertia} = \sum_{i=1}^{n} \left\| x_i - \mu_{c_i} \right\|^2
   \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
-
-- $x_i$: TItik data ke-*i*
-- $\mu_{c_i}$: Centroid dari cluster tempat $x_i$ berada
-</pre></div>
-</div>
+<p>dimana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span>: TItik data ke-<em>i</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{c_i}\)</span>: Centroid dari cluster tempat <span class="math notranslate nohighlight">\(x_i\)</span> berada</p></li>
+</ul>
 <ul class="simple">
 <li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.</p></li>
 </ul>
@@ -525,12 +532,11 @@ document.write(`
 \[
   s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
   \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Keterangan:
-
-- $a(i)$: Rata-rata jarak titik *i* ke semua titik lain dalam **klaster yang sama**
-- $b(i)$: Rata-rata jarak titik *i* ke semua titik dalam **klaster terdekat (tetangga)**
-</pre></div>
-</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik lain dalam <strong>klaster yang sama</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(b(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik dalam <strong>klaster terdekat (tetangga)</strong></p></li>
+</ul>
 </section>
 <section id="contoh-kasus">
 <h2><strong>Contoh Kasus</strong><a class="headerlink" href="#contoh-kasus" title="Link to this heading">#</a></h2>
@@ -726,17 +732,12 @@ Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2-binary in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.9.10)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.1.1</span>
 <span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sqlalchemy in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.0.39)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: greenlet!=0.4.17 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from sqlalchemy) (3.1.1)
+Requirement already satisfied: greenlet!=0.4.17 in /usr/local/python/3.12.1/lib/python3.12/site-packages (from sqlalchemy) (3.1.1)
 Requirement already satisfied: typing-extensions&gt;=4.6.0 in /home/codespace/.local/lib/python3.12/site-packages (from sqlalchemy) (4.12.2)
 </pre></div>
 </div>
@@ -1690,9 +1691,7 @@ J_m = \sum_{i=1}^{n} \sum_{j=1}^{c} u_{ij}^m \cdot \|x_i - c_j\|^2
 \[
   \sum_{i=1}^{c} u_{ik} = 1, \quad \forall k
   \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
-</pre></div>
-</div>
+<p>dimana:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( u_{ik} \)</span> adalah derajat keanggotaan data ke-k pada cluster ke-i.</p></li>
 <li><p><span class="math notranslate nohighlight">\( \sum_{i=1}^{c} u_{ik} \)</span> berarti jumlah seluruh derajat keanggotaan data ke-k ke semua cluster.</p></li>
@@ -1705,14 +1704,14 @@ J_m = \sum_{i=1}^{n} \sum_{j=1}^{c} u_{ij}^m \cdot \|x_i - c_j\|^2
 \[
   v_i = \frac{\sum_{k=1}^{n} u_{ik}^m \, x_k}{\sum_{k=1}^{n} u_{ik}^m}
   \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
-- $ v_i $ adalah pusat (centroid) klaster ke-i.
-- $ n $ adalah jumlah data.
-- $ u_{ik} $ adalah derajat keanggotaan data ke-k pada klaster ke-i.
-- $ m $ adalah parameter fuzziness (biasanya m).
-- $ x_k $ adalah data ke-k.
-</pre></div>
-</div>
+<p>dimana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( v_i \)</span> adalah pusat (centroid) klaster ke-i.</p></li>
+<li><p><span class="math notranslate nohighlight">\( n \)</span> adalah jumlah data.</p></li>
+<li><p><span class="math notranslate nohighlight">\( u_{ik} \)</span> adalah derajat keanggotaan data ke-k pada klaster ke-i.</p></li>
+<li><p><span class="math notranslate nohighlight">\( m \)</span> adalah parameter fuzziness (biasanya m).</p></li>
+<li><p><span class="math notranslate nohighlight">\( x_k \)</span> adalah data ke-k.</p></li>
+</ul>
 <ol class="arabic simple" start="3">
 <li><p>Update keanggotaan <span class="math notranslate nohighlight">\( U \)</span></p></li>
 </ol>
@@ -1720,35 +1719,35 @@ J_m = \sum_{i=1}^{n} \sum_{j=1}^{c} u_{ij}^m \cdot \|x_i - c_j\|^2
 \[
   u_{ik} = \frac{1}{\sum_{j=1}^{c} \left( \frac{ \| x_k - v_i \| }{ \| x_k - v_j \| } \right)^{\frac{2}{m-1}} }
   \]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
-- $ u_{ik} $ Derajat keanggotaan data ke-(k) pada cluster ke-(i).
-- $ x_k $ Data ke-(k).
-- $ v_i $ Pusat (centroid) cluster ke-(i).
-- $ v_j $ Pusat (centroid) cluster ke-(j), untuk semua cluster (j = 1 2, ..., c).
-- $ m $ Parameter fuzziness (biasanya (m = 2)), mengatur tingkat “kekaburan” keanggotaan.
-- $ | $ Jarak (biasanya Euclidean) antara data ke-(k) dan pusat cluster ke-(i).
-- $ c $ Jumlah cluster
-</pre></div>
-</div>
+<p>dimana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( u_{ik} \)</span> Derajat keanggotaan data ke-(k) pada cluster ke-(i).</p></li>
+<li><p><span class="math notranslate nohighlight">\( x_k \)</span> Data ke-(k).</p></li>
+<li><p><span class="math notranslate nohighlight">\( v_i \)</span> Pusat (centroid) cluster ke-(i).</p></li>
+<li><p><span class="math notranslate nohighlight">\( v_j \)</span> Pusat (centroid) cluster ke-(j), untuk semua cluster (j = 1 2, …, c).</p></li>
+<li><p><span class="math notranslate nohighlight">\( m \)</span> Parameter fuzziness (biasanya (m = 2)), mengatur tingkat “kekaburan” keanggotaan.</p></li>
+<li><p><span class="math notranslate nohighlight">\( | \)</span> Jarak (biasanya Euclidean) antara data ke-(k) dan pusat cluster ke-(i).</p></li>
+<li><p><span class="math notranslate nohighlight">\( c \)</span> Jumlah cluster</p></li>
+</ul>
 <ol class="arabic simple" start="4">
 <li><p>Cek konvergensi</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Hintung selisih antara matriks keanggotaan sebelum dan sesudah update.
-- Jika perubahan &lt; toleeransi $ (\epsilon) $, hentikan proses.
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Hintung selisih antara matriks keanggotaan sebelum dan sesudah update.</p></li>
+<li><p>Jika perubahan &lt; toleeransi <span class="math notranslate nohighlight">\( (\epsilon) \)</span>, hentikan proses.</p></li>
+</ul>
 <ol class="arabic simple" start="5">
 <li><p>Iterasi ulang</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- kembali ke langkah 2 sampai algoritma konvergen.
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>kembali ke langkah 2 sampai algoritma konvergen.</p></li>
+</ul>
 <ol class="arabic simple" start="6">
 <li><p>Tentukan kluster akhir</p></li>
 </ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Untuk setiap data $ x_k $, tentukan kluster utamanya berdasarkan nilai $ u_{ik} $ tertangga.
-</pre></div>
-</div>
+<ul class="simple">
+<li><p>Untuk setiap data <span class="math notranslate nohighlight">\( x_k \)</span>, tentukan kluster utamanya berdasarkan nilai <span class="math notranslate nohighlight">\( u_{ik} \)</span> tertangga.</p></li>
+</ul>
 </section>
 <section id="contoh-manual-perhitungan-fuzzy-c-means-clustering">
 <h2><strong>Contoh manual perhitungan fuzzy c-means clustering</strong><a class="headerlink" href="#contoh-manual-perhitungan-fuzzy-c-means-clustering" title="Link to this heading">#</a></h2>
@@ -2128,6 +2127,310 @@ Total Iterasi: 7
 </section>
 <section id="implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster">
 <h2><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong><a class="headerlink" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster" title="Link to this heading">#</a></h2>
+<section id="normalisasi-data-min-max-scaling">
+<h3><strong>Normalisasi Data (Min-Max Scaling)</strong><a class="headerlink" href="#normalisasi-data-min-max-scaling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Load dataset iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># hanya ambil fitur</span>
+
+<span class="c1"># Normalisasi menggunakan Min-Max</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil normalisasi</span>
+<span class="n">df_normalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Data setelah normalisasi (5 data pertama):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_normalized</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Data setelah normalisasi (5 data pertama):
+   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
+0           0.222222          0.625000           0.067797          0.041667
+1           0.166667          0.416667           0.067797          0.041667
+2           0.111111          0.500000           0.050847          0.041667
+3           0.083333          0.458333           0.084746          0.041667
+4           0.194444          0.666667           0.067797          0.041667
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inisialisasi-parameter-dan-matriks-keanggotaan-u">
+<h3><strong>Inisialisasi Parameter dan Matriks Keanggotaan U</strong><a class="headerlink" href="#inisialisasi-parameter-dan-matriks-keanggotaan-u" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameter FCM</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>           <span class="c1"># jumlah klaster</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">2.0</span>         <span class="c1"># derajat fuzziness</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-5</span>  <span class="c1"># ambang konvergensi</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Inisialisasi keanggotaan U secara acak dan normalisasi baris (jumlah keanggotaan = 1)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># agar konsisten</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">dirichlet</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan matriks keanggotaan awal</span>
+<span class="n">df_u</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Matriks keanggotaan awal (U) [5 data pertama]:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_u</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Matriks keanggotaan awal (U) [5 data pertama]:
+   Cluster 1  Cluster 2  Cluster 3
+0   0.097843   0.627614   0.274543
+1   0.729092   0.135465   0.135443
+2   0.020012   0.672618   0.307370
+3   0.258905   0.004374   0.736721
+4   0.802602   0.107237   0.090161
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hitung-pusat-klaster-centroid">
+<h3><strong>Hitung Pusat Klaster (Centroid)</strong><a class="headerlink" href="#hitung-pusat-klaster-centroid" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cluster_centers</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">um</span> <span class="o">=</span> <span class="n">U</span> <span class="o">**</span> <span class="n">m</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">um</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">V</span>
+
+<span class="c1"># Hitung pusat klaster awal</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">compute_cluster_centers</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil pusat klaster</span>
+<span class="n">df_centroids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Pusat klaster (V):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_centroids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Pusat klaster (V):
+   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
+0           0.490761          0.418426           0.536901          0.531153
+1           0.430690          0.441809           0.474983          0.462331
+2           0.370244          0.464724           0.384137          0.371776
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="update-matriks-keanggotaan-u">
+<h3><strong>Update Matriks Keanggotaan U</strong><a class="headerlink" href="#update-matriks-keanggotaan-u" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_membership_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">U_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+            <span class="n">dist_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-10</span>  <span class="c1"># hindari div-by-zero</span>
+            <span class="n">denom</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">dist_ij</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
+            <span class="n">U_new</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="k">return</span> <span class="n">U_new</span>
+
+<span class="c1"># Update keanggotaan</span>
+<span class="n">U_new</span> <span class="o">=</span> <span class="n">update_membership_matrix</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan matriks keanggotaan baru</span>
+<span class="n">df_u_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">U_new</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Matriks keanggotaan baru (U) setelah update [5 data pertama]:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_u_new</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Matriks keanggotaan baru (U) setelah update [5 data pertama]:
+   Cluster 1  Cluster 2  Cluster 3
+0   0.217073   0.297053   0.485874
+1   0.217355   0.297119   0.485526
+2   0.220863   0.299330   0.479808
+3   0.220481   0.299558   0.479961
+4   0.220957   0.299647   0.479396
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hitung-fungsi-objektif-dan-cek-konvergensi">
+<h3><strong>Hitung Fungsi Objektif dan Cek Konvergensi</strong><a class="headerlink" href="#hitung-fungsi-objektif-dan-cek-konvergensi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">obj</span> <span class="o">+=</span> <span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">V</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">obj</span>
+
+<span class="k">def</span> <span class="nf">has_converged</span><span class="p">(</span><span class="n">U_old</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U_new</span> <span class="o">-</span> <span class="n">U_old</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">epsilon</span>
+
+<span class="c1"># Hitung fungsi objektif dan cek konvergensi</span>
+<span class="n">obj_value</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">U_new</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="n">converged</span> <span class="o">=</span> <span class="n">has_converged</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 Nilai fungsi objektif: </span><span class="si">{</span><span class="n">obj_value</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Sudah konvergen? </span><span class="si">{</span><span class="n">converged</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 Nilai fungsi objektif: 12.760042
+✅ Sudah konvergen? False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iterasi-hingga-konvergen-dalam-loop">
+<h3><strong>Iterasi Hingga Konvergen (dalam loop)</strong><a class="headerlink" href="#iterasi-hingga-konvergen-dalam-loop" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">dirichlet</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># reset ulang</span>
+
+<span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔁 Iterasi ke-</span><span class="si">{</span><span class="n">iteration</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">compute_cluster_centers</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="n">U_new</span> <span class="o">=</span> <span class="n">update_membership_matrix</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="n">obj_value</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">U_new</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">X_scaled</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🎯 Fungsi objektif: </span><span class="si">{</span><span class="n">obj_value</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">has_converged</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Konvergen pada iterasi ke-</span><span class="si">{</span><span class="n">iteration</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">U_new</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Tentukan hasil akhir klaster</span>
+<span class="n">final_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df_result</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">final_labels</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Hasil akhir klaster (5 data pertama):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_result</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔁 Iterasi ke-1
+🎯 Fungsi objektif: 13.613622
+
+🔁 Iterasi ke-2
+🎯 Fungsi objektif: 12.813316
+
+🔁 Iterasi ke-3
+🎯 Fungsi objektif: 9.084991
+
+🔁 Iterasi ke-4
+🎯 Fungsi objektif: 5.968113
+
+🔁 Iterasi ke-5
+🎯 Fungsi objektif: 5.428203
+
+🔁 Iterasi ke-6
+🎯 Fungsi objektif: 5.259515
+
+🔁 Iterasi ke-7
+🎯 Fungsi objektif: 5.227317
+
+🔁 Iterasi ke-8
+🎯 Fungsi objektif: 5.222094
+
+🔁 Iterasi ke-9
+🎯 Fungsi objektif: 5.220994
+
+🔁 Iterasi ke-10
+🎯 Fungsi objektif: 5.220667
+
+🔁 Iterasi ke-11
+🎯 Fungsi objektif: 5.220550
+
+🔁 Iterasi ke-12
+🎯 Fungsi objektif: 5.220506
+
+🔁 Iterasi ke-13
+🎯 Fungsi objektif: 5.220489
+
+🔁 Iterasi ke-14
+🎯 Fungsi objektif: 5.220482
+
+🔁 Iterasi ke-15
+🎯 Fungsi objektif: 5.220479
+
+🔁 Iterasi ke-16
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-17
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-18
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-19
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-20
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-21
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-22
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-23
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-24
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-25
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-26
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-27
+🎯 Fungsi objektif: 5.220478
+
+🔁 Iterasi ke-28
+🎯 Fungsi objektif: 5.220478
+✅ Konvergen pada iterasi ke-28
+
+📊 Hasil akhir klaster (5 data pertama):
+   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)  \
+0           0.222222          0.625000           0.067797          0.041667   
+1           0.166667          0.416667           0.067797          0.041667   
+2           0.111111          0.500000           0.050847          0.041667   
+3           0.083333          0.458333           0.084746          0.041667   
+4           0.194444          0.666667           0.067797          0.041667   
+
+   Cluster  
+0        1  
+1        1  
+2        1  
+3        1  
+4        1  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -2253,7 +2556,15 @@ Total Iterasi: 7
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-manual-perhitungan-fuzzy-c-means-clustering"><strong>Contoh manual perhitungan fuzzy c-means clustering</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implmentasi-python"><strong>implmentasi python</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster"><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fuzzy-c-mean-untuk-data-iris-3-cluster"><strong>implementasi fuzzy c-mean untuk data iris (3 cluster)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data-min-max-scaling"><strong>Normalisasi Data (Min-Max Scaling)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-parameter-dan-matriks-keanggotaan-u"><strong>Inisialisasi Parameter dan Matriks Keanggotaan U</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-pusat-klaster-centroid"><strong>Hitung Pusat Klaster (Centroid)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-matriks-keanggotaan-u"><strong>Update Matriks Keanggotaan U</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-fungsi-objektif-dan-cek-konvergensi"><strong>Hitung Fungsi Objektif dan Cek Konvergensi</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-hingga-konvergen-dalam-loop"><strong>Iterasi Hingga Konvergen (dalam loop)</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
