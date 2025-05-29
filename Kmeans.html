@@ -189,6 +189,7 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>CIRRHOSIS</strong></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>K-Means Clustering</strong></a></li>
+
 </ul>
 
     </div>
@@ -384,6 +385,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>K-Means Clustering</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-k-means-clustering"><strong>Apa itu K-Means Clustering?</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-k-means-clustering"><strong>Cara kerja K-Means Clustering</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kekurangan"><strong>Keuntungan dan Kekurangan</strong></a></li>
@@ -444,6 +446,15 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means"><strong>Fuzzy C-Means</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-means"><strong>Konsep Dasar FUzzy C-Means</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciri-khas-fuzzy-c-means"><strong>Ciri Khas FUzzy C-Means</strong></a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -492,30 +503,32 @@ document.write(`
 </section>
 <section id="evaluasi-hasil-clustering">
 <h2><strong>Evaluasi Hasil Clustering</strong><a class="headerlink" href="#evaluasi-hasil-clustering" title="Link to this heading">#</a></h2>
-<ul>
-<li><p><strong>Inertia:</strong> Jumlah kuadrat jarak antara titik dan centroid.</p>
+<ul class="simple">
+<li><p><strong>Inertia:</strong> Jumlah kuadrat jarak antara titik dan centroid.</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-    \text{Inertia} = \sum_{i=1}^{n} \left\| x_i - \mu_{c_i} \right\|^2
-    \]</div>
-<p>dimana:</p>
+  \text{Inertia} = \sum_{i=1}^{n} \left\| x_i - \mu_{c_i} \right\|^2
+  \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dimana:
+
+- $x_i$: TItik data ke-*i*
+- $\mu_{c_i}$: Centroid dari cluster tempat $x_i$ berada
+</pre></div>
+</div>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x_i\)</span>: TItik data ke-<em>i</em></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mu_{c_i}\)</span>: Centroid dari cluster tempat <span class="math notranslate nohighlight">\(x_i\)</span> berada</p></li>
+<li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.</p></li>
 </ul>
-</li>
-<li><p><strong>Silhouette Score:</strong> Ukuran seberapa mirip suatu objek dengan klusternya dibandding kluster lain.</p>
 <div class="math notranslate nohighlight">
 \[
-    s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
-    \]</div>
-<p>Keterangan:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(a(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik lain dalam <strong>klaster yang sama</strong></p></li>
-<li><p><span class="math notranslate nohighlight">\(b(i)\)</span>: Rata-rata jarak titik <em>i</em> ke semua titik dalam <strong>klaster terdekat (tetangga)</strong></p></li>
-</ul>
-</li>
-</ul>
+  s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}
+  \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Keterangan:
+
+- $a(i)$: Rata-rata jarak titik *i* ke semua titik lain dalam **klaster yang sama**
+- $b(i)$: Rata-rata jarak titik *i* ke semua titik dalam **klaster terdekat (tetangga)**
+</pre></div>
+</div>
 </section>
 <section id="contoh-kasus">
 <h2><strong>Contoh Kasus</strong><a class="headerlink" href="#contoh-kasus" title="Link to this heading">#</a></h2>
@@ -1063,19 +1076,19 @@ Name: count, dtype: int64
 <h5><strong>Mengapa Perlu Redukasi Dimensi (PCA)?</strong><a class="headerlink" href="#mengapa-perlu-redukasi-dimensi-pca" title="Link to this heading">#</a></h5>
 <p>Masalah utamanya ada pada dataset iris yang memiliki <strong>4 dimensi (fitur)</strong>. Walau tidak terlalu banyak, ada dua alasan kuat mengapa tetap pertimbangkan PCA:</p>
 <ol class="arabic simple">
-<li><p>Visualisasi</p>
-<ul class="simple">
-<li><p>Data berdimensi tinggi sulit divisualisasikan</p></li>
-<li><p>PCA memungkinkan kita menampilkan data dalam 2D atau 3D tanpa kehilangan terlalu banyak informasi.</p></li>
-</ul>
-</li>
-<li><p>Mengurangi Noise atau Redundansi</p>
-<ul class="simple">
-<li><p>PCA menggabungkan fitur-fitur yang memiliki korelasi tinggi.</p></li>
-<li><p>Bisa membuat struktur klaster lebih jelas dan efisiensi untuk diproses.</p></li>
-</ul>
-</li>
+<li><p>Visualisasi</p></li>
 </ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   Data berdimensi tinggi sulit divisualisasikan
+*   PCA memungkinkan kita menampilkan data dalam 2D atau 3D tanpa kehilangan terlalu banyak informasi.
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Mengurangi Noise atau Redundansi</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   PCA menggabungkan fitur-fitur yang memiliki korelasi tinggi.
+*   Bisa membuat struktur klaster lebih jelas dan efisiensi untuk diproses.
+</pre></div>
+</div>
 <p>dalam dataset iris, kombinasi <code class="docutils literal notranslate"><span class="pre">petal_legth</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> sudah sangat kuat untuk membedakan kelas, jadi PCA dapat membantu menonjolkan informasi utama.</p>
 </section>
 <section id="pca-dengan-2-dimensi">
@@ -1605,6 +1618,37 @@ Mapping cluster ke label:
 </section>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="fuzzy-c-means">
+<h1><strong>Fuzzy C-Means</strong><a class="headerlink" href="#fuzzy-c-means" title="Link to this heading">#</a></h1>
+<section id="konsep-dasar-fuzzy-c-means">
+<h2><strong>Konsep Dasar FUzzy C-Means</strong><a class="headerlink" href="#konsep-dasar-fuzzy-c-means" title="Link to this heading">#</a></h2>
+<p>termasuk dalam kategori unsupervised learning. Berbeda dengan metode clustering klasik seperti K-Means yang bersifat hard clustering (setiap data hanya boleh masuk ke satu cluster), Fuzzy C-Means (FCM) bersifat soft clustering, yaitu setiap data dapat menjadi anggota lebih dari satu cluster dengan derajat keanggotaan tertentu.</p>
+<p><strong>Penjelasan Singkat:</strong></p>
+<ul class="simple">
+<li><p><strong>Fuzzy:</strong> Artinya “kabur” atau “tidak pasti”. Dalam konteks ini, setiap data memiliki derajat keanggotaan (membership degree) pada setiap cluster, dengan nilai antara 0 dan 1.</p></li>
+<li><p><strong>C-Means:</strong> “C” di sini mengacu pada jumlah cluster yang diinginkan (misal: 2, 3, dst.), dan “Means” berarti rata-rata (centroid) dari setiap cluster.</p></li>
+</ul>
+<p><strong>Cara Kerja Fuzzy C-Means:</strong></p>
+<ol class="arabic simple">
+<li><p>Menentukan jumlah cluster (C) yang diinginkan.</p></li>
+<li><p>Menginisialisasi matriks keanggotaan secara acak, yang menunjukkan seberapa besar suatu data termasuk dalam cluster tertentu.</p></li>
+<li><p>Menghitung centroid (titik tengah) setiap cluster berdasarkan derajat keanggotaan.</p></li>
+<li><p>Memperbarui matriks keanggotaan berdasarkan jarak data ke centroid masing-masing cluster.</p></li>
+<li><p>Mengulangi proses 3 dan 4 sampai matriks keanggotaan konvergen (perubahan sangat kecil) atau mencapai jumlah iterasi maksimum.</p></li>
+</ol>
+</section>
+<section id="algoritma-fuzzy-c-mean-clustering">
+<h2><strong>Algoritma fuzzy c-mean clustering</strong><a class="headerlink" href="#algoritma-fuzzy-c-mean-clustering" title="Link to this heading">#</a></h2>
+</section>
+<section id="ciri-khas-fuzzy-c-means">
+<h2><strong>Ciri Khas FUzzy C-Means</strong><a class="headerlink" href="#ciri-khas-fuzzy-c-means" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Setiap data dapat menjadi anggota beberapa cluster dengan tingkat keanggotaan yang berbeda-beda.</p></li>
+<li><p>Hasil clustering lebih fleksibel dan cocok untuk data yang memang “kabur” atau tidak pasti cluster-nya.</p></li>
+<li><p>Sering digunakan di bidang pengolahan citra, medis, dan data mining.</p></li>
+</ul>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1661,6 +1705,7 @@ Mapping cluster ke label:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>K-Means Clustering</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-k-means-clustering"><strong>Apa itu K-Means Clustering?</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-k-means-clustering"><strong>Cara kerja K-Means Clustering</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kekurangan"><strong>Keuntungan dan Kekurangan</strong></a></li>
@@ -1721,6 +1766,15 @@ Mapping cluster ke label:
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means"><strong>Fuzzy C-Means</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-means"><strong>Konsep Dasar FUzzy C-Means</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-clustering"><strong>Algoritma fuzzy c-mean clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciri-khas-fuzzy-c-means"><strong>Ciri Khas FUzzy C-Means</strong></a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
