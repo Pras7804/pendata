@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Decision Tree &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'decisiontree';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="K-Means Clustering" href="Kmeans.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/1.jpeg" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <script>document.write(`<img src="_static/1.jpeg" class="logo__image only-dark" alt="Penambangan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_understanding.html"><strong>Memahami Data</strong></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Deteksi_Outlier.html"><strong>Deteksi Outlier</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Naive_Bayes.html"><strong>Naive Bayes</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipe_data.html"><strong>Tipe Data</strong></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>CIRRHOSIS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kmeans.html"><strong>K-Means Clustering</strong></a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Decision Tree</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdecisiontree.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/decisiontree.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Decision Tree</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-decision-tree">1. <strong>Cara Kerja Decision Tree</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual">2. <strong>Contoh Perhitungan Manual</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-hitung-entropy-total"><strong>Langkah 1: Hitung Entropy Total</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-uji-threshold-dan-hitung-information-gain-untuk-fitur-nilai"><strong>Langkah 2: Uji Threshold dan Hitung Information Gain untuk Fitur ‘Nilai’</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-untuk-threshold-nilai-82-5">**Perhitungan untuk Threshold: <strong>Nilai ≤ 82.5</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-uji-threshold-dan-hitung-information-gain-untuk-fitur-penghasilan"><strong>Langkah 3: Uji Threshold dan Hitung Information Gain untuk Fitur ‘Penghasilan’</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-threshold-penghasilan-3-25">Contoh Perhitungan Threshold: <strong>Penghasilan ≤ 3.25</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-dengan-library-scikit-learn">3. <strong>Perbandingan dengan Library Scikit-learn</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="decision-tree">
+<h1><strong>Decision Tree</strong><a class="headerlink" href="#decision-tree" title="Link to this heading">#</a></h1>
+<p>Decision Tree atau Pohon Keputusan adalah salah satu algoritma supervised learning yang paling populer dalam machine learning. Algoritma ini bekerja dengan cara membangun model prediksi dalam bentuk struktur pohon. Setiap simpul (node) pada pohon merepresentasikan sebuah “tes” pada suatu atribut (fitur), setiap cabang merepresentasikan hasil dari tes tersebut, dan setiap daun (leaf node) merepresentasikan label kelas atau nilai target.</p>
+<p>Tujuan utama dari Decision Tree adalah untuk membuat serangkaian aturan keputusan (rules) yang dapat digunakan untuk memprediksi kelas atau nilai dari data baru. Karena strukturnya yang mirip diagram alir, model ini sangat mudah diinterpretasikan dan dipahami oleh manusia.</p>
+<section id="cara-kerja-decision-tree">
+<h2>1. <strong>Cara Kerja Decision Tree</strong><a class="headerlink" href="#cara-kerja-decision-tree" title="Link to this heading">#</a></h2>
+<p>Decision Tree bekerja dengan cara mempartisi atau membagi dataset secara rekursif menjadi subset-subset yang lebih kecil dan lebih homogen berdasarkan fitur-fitur yang ada. Proses pembagian ini dilakukan dengan memilih fitur dan <em>threshold</em> (nilai ambang) terbaik yang dapat memisahkan data ke dalam kelas-kelas seakurat mungkin.</p>
+<p>Kualitas pemisahan diukur menggunakan metrik seperti <strong>Entropy</strong> dan <strong>Information Gain</strong>.</p>
+<ul class="simple">
+<li><p><strong>Entropy</strong>: Mengukur tingkat ketidakpastian atau “keacakan” dalam sebuah set data. Nilai entropy adalah 0 jika semua data dalam satu set termasuk dalam kelas yang sama (murni), dan bernilai maksimum jika data terdistribusi secara merata di semua kelas.</p></li>
+</ul>
+<p>Formula Entropy:</p>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<ul class="simple">
+<li><p><strong>Information Gain</strong>: Mengukur seberapa besar penurunan entropy yang terjadi setelah data dibagi berdasarkan suatu fitur. Fitur dengan Information Gain tertinggi akan dipilih sebagai pemecah (splitter) pada node tersebut.</p></li>
+</ul>
+<p>Formula Information Gain:</p>
+<p><img alt="image.png" src="data:image/png;base64,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" /></p>
+<p>Proses ini terus berlanjut hingga kondisi berhenti tercapai, misalnya:</p>
+<ul class="simple">
+<li><p>Semua data pada sebuah node sudah termasuk dalam kelas yang sama.</p></li>
+<li><p>Tidak ada fitur lagi yang bisa digunakan untuk membagi data.</p></li>
+<li><p>Kedalaman maksimum pohon telah tercapai.</p></li>
+</ul>
+</section>
+<section id="contoh-perhitungan-manual">
+<h2>2. <strong>Contoh Perhitungan Manual</strong><a class="headerlink" href="#contoh-perhitungan-manual" title="Link to this heading">#</a></h2>
+<p><strong>Dataset</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nilai</p></th>
+<th class="head"><p>Penghasilan (jt)</p></th>
+<th class="head"><p>Beasiswa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>65</p></td>
+<td><p>2.5</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>70</p></td>
+<td><p>3</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-even"><td><p>72</p></td>
+<td><p>3.5</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-odd"><td><p>75</p></td>
+<td><p>4</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>78</p></td>
+<td><p>4.5</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-odd"><td><p>80</p></td>
+<td><p>3</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>82</p></td>
+<td><p>2.5</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>85</p></td>
+<td><p>3.5</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>88</p></td>
+<td><p>2</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>90</p></td>
+<td><p>4</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>92</p></td>
+<td><p>3</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>93</p></td>
+<td><p>4.5</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>94</p></td>
+<td><p>2</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>95</p></td>
+<td><p>3</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-even"><td><p>96</p></td>
+<td><p>4.5</p></td>
+<td><p>Ya</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="langkah-1-hitung-entropy-total">
+<h3><strong>Langkah 1: Hitung Entropy Total</strong><a class="headerlink" href="#langkah-1-hitung-entropy-total" title="Link to this heading">#</a></h3>
+<p>Distribusi kelas:</p>
+<ul class="simple">
+<li><p>Ya = 8</p></li>
+<li><p>Tidak = 7</p></li>
+<li><p>total = 15</p></li>
+</ul>
+<p>Probabilitas:</p>
+<div class="math notranslate nohighlight">
+\[
+P(Ya) = \frac{8}{15} = 0.533,\quad P(Tidak) = \frac{7}{15} = 0.466,
+\]</div>
+<p>Entropy total:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{total} = - \sum p_i \log_2 p_i = -(0.533 \log_2 0.533 + 0.466 \log_2 0.466) \approx 0.996
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="langkah-2-uji-threshold-dan-hitung-information-gain-untuk-fitur-nilai">
+<h3><strong>Langkah 2: Uji Threshold dan Hitung Information Gain untuk Fitur ‘Nilai’</strong><a class="headerlink" href="#langkah-2-uji-threshold-dan-hitung-information-gain-untuk-fitur-nilai" title="Link to this heading">#</a></h3>
+<section id="perhitungan-untuk-threshold-nilai-82-5">
+<h4>**Perhitungan untuk Threshold: <strong>Nilai ≤ 82.5</strong><a class="headerlink" href="#perhitungan-untuk-threshold-nilai-82-5" title="Link to this heading">#</a></h4>
+<p><strong>Split Data:</strong></p>
+<ul>
+<li><p>Kiri (Nilai ≤ 7.5):</p>
+<p>7 data:
+Kelas: Ya=4, Tidak=3</p>
+<p>Probabilitas:</p>
+<div class="math notranslate nohighlight">
+\[
+  P(Ya) = \frac{4}{7} = 0.571, \quad P(Tidak) = \frac{3}{7} = 0.428
+  \]</div>
+<p>Entropy kiri:</p>
+<div class="math notranslate nohighlight">
+\[
+  E_{kiri} = -(0.571 \log_2 0.571 + 0.428 \log_2 0.428) \approx 0.985
+  \]</div>
+</li>
+<li><p>Kanan (Nilai &gt; 82.5):</p>
+<p>8 data:
+Kelas: Ya=4, Tidak=4</p>
+<p>Entropy kanan:</p>
+<div class="math notranslate nohighlight">
+\[
+  E_{kanan} = -(0.5 \log_2 0.5 + 0.5 \log_2 0.5) \approx 1
+  \]</div>
+</li>
+</ul>
+<p><strong>Bobot Entropy Gabungan:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+E_{split} = \frac{7}{15} \times 0.985 + \frac{8}{15} \times 1 = 0.993
+\]</div>
+<p><strong>Information Gain:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+IG = E_{total} - E_{split} = 0.996 - 0.993 = 0.003
+\]</div>
+</section>
+</section>
+<section id="langkah-3-uji-threshold-dan-hitung-information-gain-untuk-fitur-penghasilan">
+<h3><strong>Langkah 3: Uji Threshold dan Hitung Information Gain untuk Fitur ‘Penghasilan’</strong><a class="headerlink" href="#langkah-3-uji-threshold-dan-hitung-information-gain-untuk-fitur-penghasilan" title="Link to this heading">#</a></h3>
+</section>
+<section id="contoh-perhitungan-threshold-penghasilan-3-25">
+<h3>Contoh Perhitungan Threshold: <strong>Penghasilan ≤ 3.25</strong><a class="headerlink" href="#contoh-perhitungan-threshold-penghasilan-3-25" title="Link to this heading">#</a></h3>
+<p><strong>Split Data:</strong></p>
+<ul>
+<li><p>Kiri (Penghasilan ≤ 3.25): 8 data
+Kelas: Ya=1, Tidak=7</p>
+<p>Probabilitas:</p>
+<div class="math notranslate nohighlight">
+\[
+  P(Tidak) = \frac{7}{8} = 0.875, \quad P(Ya) = \frac{1}{8} = 0.125
+  \]</div>
+<p>Entropy kiri:</p>
+<div class="math notranslate nohighlight">
+\[
+  E_{kiri} = -(0.875 \log_2 0.875 + 0.125 \log_2 0.125) \approx 0.543
+  \]</div>
+</li>
+<li><p>Kanan (Penghasilan &gt; 3): 7 data
+Kelas: Ya=7 (murni)</p>
+<p>Entropy kanan:</p>
+<div class="math notranslate nohighlight">
+\[
+  E_{kanan} = 0
+  \]</div>
+</li>
+</ul>
+<p><strong>Bobot Entropy Gabungan:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+E_{split} = \frac{8}{15} \times 0.543 + \frac{7}{15} \times 0 = 0.289
+\]</div>
+<p><strong>Information Gain:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+IG = 0.996 - 0.289 = 0.706
+\]</div>
+</section>
+</section>
+<section id="perbandingan-dengan-library-scikit-learn">
+<h2>3. <strong>Perbandingan dengan Library Scikit-learn</strong><a class="headerlink" href="#perbandingan-dengan-library-scikit-learn" title="Link to this heading">#</a></h2>
+<p>membuat model yang sama menggunakan library <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> di Python untuk memvalidasi hasil perhitungan manual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="c1"># Data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Nilai&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">96</span><span class="p">],</span>
+    <span class="s1">&#39;Penghasilan&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span>
+    <span class="s1">&#39;Beasiswa&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Buat DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Label encoding untuk target</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Beasiswa&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Beasiswa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Ya&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Tidak&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+<span class="c1"># Fitur dan target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Nilai&#39;</span><span class="p">,</span> <span class="s1">&#39;Penghasilan&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Beasiswa&#39;</span><span class="p">]</span>
+
+<span class="c1"># Buat decision tree</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">()))</span>
+
+<span class="c1"># Plot pohon</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Nilai&#39;</span><span class="p">,</span> <span class="s1">&#39;Penghasilan&#39;</span><span class="p">],</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Tidak&#39;</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">],</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nilai</th>
+      <th>Penghasilan</th>
+      <th>Beasiswa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>65</td>
+      <td>2.5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>70</td>
+      <td>3.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>72</td>
+      <td>3.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>75</td>
+      <td>4.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>78</td>
+      <td>4.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>80</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>82</td>
+      <td>2.5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>85</td>
+      <td>3.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>88</td>
+      <td>2.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>90</td>
+      <td>3.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>92</td>
+      <td>3.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>93</td>
+      <td>4.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>94</td>
+      <td>2.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>95</td>
+      <td>3.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>96</td>
+      <td>4.5</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></div><img alt="_images/0585ef9cb5558fae6aae32b1762559612214e6ed37aa9f34bafdb041a9c352db.png" src="_images/0585ef9cb5558fae6aae32b1762559612214e6ed37aa9f34bafdb041a9c352db.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">data_uji</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Nilai&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">83</span><span class="p">,</span> <span class="mi">76</span><span class="p">],</span>
+    <span class="s1">&#39;Penghasilan&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">prediksi</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_uji</span><span class="p">)</span>
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_uji</span><span class="p">)</span>
+<span class="n">hasil</span><span class="p">[</span><span class="s1">&#39;Prediksi Beasiswa&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ya&#39;</span> <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;Tidak&#39;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prediksi</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Nilai  Penghasilan Prediksi Beasiswa
+0     83          4.0                Ya
+1     76          2.5             Tidak
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Kmeans.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>K-Means Clustering</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-decision-tree">1. <strong>Cara Kerja Decision Tree</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual">2. <strong>Contoh Perhitungan Manual</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-hitung-entropy-total"><strong>Langkah 1: Hitung Entropy Total</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-uji-threshold-dan-hitung-information-gain-untuk-fitur-nilai"><strong>Langkah 2: Uji Threshold dan Hitung Information Gain untuk Fitur ‘Nilai’</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-untuk-threshold-nilai-82-5">**Perhitungan untuk Threshold: <strong>Nilai ≤ 82.5</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-uji-threshold-dan-hitung-information-gain-untuk-fitur-penghasilan"><strong>Langkah 3: Uji Threshold dan Hitung Information Gain untuk Fitur ‘Penghasilan’</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-threshold-penghasilan-3-25">Contoh Perhitungan Threshold: <strong>Penghasilan ≤ 3.25</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-dengan-library-scikit-learn">3. <strong>Perbandingan dengan Library Scikit-learn</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dwi Prasetya Mumtaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
