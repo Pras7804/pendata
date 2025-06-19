@@ -1,0 +1,1393 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Teknik Binning &#8212; Penambangan Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'TeknikBinning';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Decision Tree" href="decisiontree.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/1.jpeg" class="logo__image only-light" alt="Penambangan Data - Home"/>
+    <script>document.write(`<img src="_static/1.jpeg" class="logo__image only-dark" alt="Penambangan Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Penambangan Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_understanding.html"><strong>Memahami Data</strong></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Deteksi_Outlier.html"><strong>Deteksi Outlier</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Naive_Bayes.html"><strong>Naive Bayes</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipe_data.html"><strong>Tipe Data</strong></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>CIRRHOSIS</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kmeans.html"><strong>K-Means Clustering</strong></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="decisiontree.html"><strong>Decision Tree</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Teknik Binning</strong></a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTeknikBinning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/TeknikBinning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Teknik Binning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Teknik Binning</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dataset-iris"><strong>Implementasi Dataset Iris</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes">Klasifikasi Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree">Klasifikasi Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi">Diskritisasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-k-means-clustering">Diskritisasi Menggunakan K-Means Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means">Klasifikasi Naive Bayes Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan K-Means</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan K-Means</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equal-width-binning">Diskritisasi Menggunakan Equal-Width Binning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-width-binning">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Width Binning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Width Binning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equal-frequency-binning">Diskritisasi Menggunakan Equal-Frequency Binning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-frequency-binning">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Frequency Binning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Frequency Binning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="teknik-binning">
+<h1><strong>Teknik Binning</strong><a class="headerlink" href="#teknik-binning" title="Link to this heading">#</a></h1>
+<p>Data binning atau bucketing adalah metode pra-pemrosesan data yang digunakan untuk mengurangi dampak kesalahan pengamatan. Nilai data asli dibagi ke dalam interval-interval kecil yang disebut bin, lalu nilai-nilai tersebut digantikan oleh suatu nilai umum yang dihitung untuk setiap bin tersebut. Metode ini memiliki efek menghaluskan (smoothing) pada data masukan dan juga dapat mengurangi risiko overfitting terutama pada kasus dataset yang kecil.
+Ada beberapa <strong>metode di data mining (data mining methods)</strong> yang <strong>memerlukan diskritisasi (discretization)</strong> sebelumnya diantaranya adalah</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi-dataset-iris">
+<h1><strong>Implementasi Dataset Iris</strong><a class="headerlink" href="#implementasi-dataset-iris" title="Link to this heading">#</a></h1>
+<section id="import-library">
+<h2>Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">CategoricalNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data">
+<h2>Load Data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h2>
+<p>Saya menggunakan data iris asli tanpa outlier yang berasal dari library sklearn</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="n">y_labels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">df_iris</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_iris</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width (cm)&#39;</span><span class="p">]</span>
+<span class="n">df_iris</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_labels</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df_iris</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>sepal_length (cm)</th>
+      <th>sepal_width (cm)</th>
+      <th>petal_length (cm)</th>
+      <th>petal_width (cm)</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+<section id="klasifikasi-naive-bayes">
+<h2>Klasifikasi Naive Bayes<a class="headerlink" href="#klasifikasi-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Pada tahap ini, dilakukan klasifikasi terhadap dataset Iris menggunakan algoritma Naive Bayes. Dataset Iris terdiri dari empat fitur numerik (panjang dan lebar sepal serta petal) dan tiga kelas target: setosa, versicolor, dan virginica. Data dibagi menjadi dua bagian, yaitu data latih (70%) dan data uji (30%). Model Naive Bayes dilatih menggunakan data latih dan kemudian digunakan untuk memprediksi kelas data uji.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bagi data menjadi train dan test</span>
+<span class="n">X_train_nb</span><span class="p">,</span> <span class="n">X_test_nb</span><span class="p">,</span> <span class="n">y_train_nb</span><span class="p">,</span> <span class="n">y_test_nb</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi dan latih model Naive Bayes</span>
+<span class="n">nb_model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">nb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_nb</span><span class="p">,</span> <span class="n">y_train_nb</span><span class="p">)</span>
+
+<span class="c1"># Prediksi dan akurasi</span>
+<span class="n">y_pred_nb</span> <span class="o">=</span> <span class="n">nb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_nb</span><span class="p">)</span>
+<span class="n">accuracy_nb</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_nb</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil akurasi</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Naive Bayes: </span><span class="si">{</span><span class="n">accuracy_nb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Classification report</span>
+<span class="n">report_nb</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_nb</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Naive Bayes Classification Report:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">report_nb</span><span class="p">)</span>
+
+<span class="c1"># Confusion Matrix</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">y_test_nb</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">,</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Actual&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]),</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Naive Bayes - Confusion Matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes: 0.9778
+
+Naive Bayes Classification Report:
+               precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       1.00      0.92      0.96        13
+   virginica       0.93      1.00      0.96        13
+
+    accuracy                           0.98        45
+   macro avg       0.98      0.97      0.97        45
+weighted avg       0.98      0.98      0.98        45
+</pre></div>
+</div>
+<img alt="_images/00ae08ed1cd6445051847a136500dfdff2ae8edb377442ee10ca14036b6ae304.png" src="_images/00ae08ed1cd6445051847a136500dfdff2ae8edb377442ee10ca14036b6ae304.png" />
+</div>
+</div>
+<p>Hasil evaluasi menunjukkan bahwa model ini mampu mengklasifikasikan data dengan <strong>akurasi sebesar 97,78%</strong>, yang mengindikasikan performa yang sangat baik dalam mengenali pola-pola dalam data Iris.</p>
+</section>
+<section id="klasifikasi-decision-tree">
+<h2>Klasifikasi Decision Tree<a class="headerlink" href="#klasifikasi-decision-tree" title="Link to this heading">#</a></h2>
+<p>Selain itu, dilakukan pula klasifikasi menggunakan algoritma Decision Tree pada dataset Iris yang sama. Seperti pada metode sebelumnya, data dibagi menjadi data latih dan data uji dengan proporsi 70:30. Model Decision Tree dibangun berdasarkan pemisahan fitur yang paling informatif untuk membedakan kelas-kelas bunga.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bagi data menjadi train dan test (gunakan split yang berbeda agar adil)</span>
+<span class="n">X_train_dt</span><span class="p">,</span> <span class="n">X_test_dt</span><span class="p">,</span> <span class="n">y_train_dt</span><span class="p">,</span> <span class="n">y_test_dt</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi dan latih model Decision Tree</span>
+<span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_dt</span><span class="p">,</span> <span class="n">y_train_dt</span><span class="p">)</span>
+
+<span class="c1"># Prediksi dan hitung akurasi</span>
+<span class="n">y_pred_dt</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_dt</span><span class="p">)</span>
+<span class="n">accuracy_dt</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_dt</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil akurasi</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Naive Bayes: </span><span class="si">{</span><span class="n">accuracy_dt</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi confusion matrix</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">y_test_dt</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">,</span> <span class="n">rownames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Actual&#39;</span><span class="p">],</span> <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]),</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Decision Tree - Confusion Matrix&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes: 1.0000
+</pre></div>
+</div>
+<img alt="_images/4923954cb8bffe1696b24d90e6b5d6f95b9dbc4cf4447a8632fa13de317a66a6.png" src="_images/4923954cb8bffe1696b24d90e6b5d6f95b9dbc4cf4447a8632fa13de317a66a6.png" />
+</div>
+</div>
+<p>Berdasarkan hasil prediksi dan evaluasi terhadap data uji, diperoleh akurasi sebesar 100%, yang menunjukkan bahwa model mampu mengklasifikasikan semua sampel uji dengan benar. Hal ini menunjukkan bahwa Decision Tree sangat efektif untuk dataset ini, kemungkinan karena struktur pohon mampu menangkap batas-batas antar kelas dengan sangat baik.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bagi data menjadi train dan test</span>
+<span class="n">X_train_dt</span><span class="p">,</span> <span class="n">X_test_dt</span><span class="p">,</span> <span class="n">y_train_dt</span><span class="p">,</span> <span class="n">y_test_dt</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi dan latih model Decision Tree</span>
+<span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_dt</span><span class="p">,</span> <span class="n">y_train_dt</span><span class="p">)</span>
+
+<span class="c1"># Prediksi dan akurasi</span>
+<span class="n">y_pred_dt</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_dt</span><span class="p">)</span>
+<span class="n">accuracy_dt</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_dt</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">)</span>
+
+<span class="c1"># Classification report</span>
+<span class="n">report_dt</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_dt</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Tree Classification Report:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">report_dt</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi Pohon Keputusan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span>
+    <span class="n">dt_model</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span>
+    <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi Pohon Keputusan (Decision Tree)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Decision Tree Classification Report:
+               precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       1.00      1.00      1.00        13
+   virginica       1.00      1.00      1.00        13
+
+    accuracy                           1.00        45
+   macro avg       1.00      1.00      1.00        45
+weighted avg       1.00      1.00      1.00        45
+</pre></div>
+</div>
+<img alt="_images/1bda4efce47a4afdfe5b3b43541b40f5b1938fd742e0e6cd124d40d714275229.png" src="_images/1bda4efce47a4afdfe5b3b43541b40f5b1938fd742e0e6cd124d40d714275229.png" />
+</div>
+</div>
+<p>Berdasarkan hasil prediksi dan evaluasi terhadap data uji, diperoleh <strong>akurasi sebesar 100%</strong>, yang menunjukkan bahwa model mampu mengklasifikasikan semua sampel uji dengan benar. Hal ini menunjukkan bahwa Decision Tree sangat efektif untuk dataset ini, kemungkinan karena struktur pohon mampu menangkap batas-batas antar kelas dengan sangat baik.</p>
+</section>
+<section id="diskritisasi">
+<h2>Diskritisasi<a class="headerlink" href="#diskritisasi" title="Link to this heading">#</a></h2>
+<p>Sebelum melanjutkan ke proses klasifikasi berikutnya, dilakukan tahap diskritisasi terhadap fitur numerik pada dataset Iris. Diskritisasi merupakan proses mengubah nilai numerik kontinu menjadi nilai kategori diskret atau interval tertentu. Tujuan utama dari proses ini adalah untuk:</p>
+<ul class="simple">
+<li><p>Menyederhanakan data agar lebih mudah diolah oleh algoritma tertentu, khususnya yang berbasis probabilistik seperti Naive Bayes.</p></li>
+<li><p>Mengurangi noise dan variabilitas kecil dalam data numerik.</p></li>
+<li><p>Menguji apakah konversi fitur kontinu menjadi diskret berdampak terhadap performa model klasifikasi</p></li>
+</ul>
+<p>Pada tahap ini, akan digunakan tiga teknik diskritisasi:</p>
+<ol class="arabic simple">
+<li><p>Means Discretization - Membagi data ke dalam cluster berdasarkan kemiripan (unsupervised)</p></li>
+<li><p>Equal-Width Binning - Membagi rentang nilai ke dalam interval dengan lebar yang sama</p></li>
+<li><p>Equal-Frequency Binning - Membagi nilai data ke dalam kelompok dengan jumlah data yang sama</p></li>
+</ol>
+<p>Setelah proses diskritisasi dilakukan, dataset yang telah dikonversi akan digunakan kembali untuk klasifikasi menggunakan algoritma <strong>Naive Bayes dan Decision Tree</strong>. Hasil akurasi dari model akan dibandingkan untuk melihat sejauh mana pengaruh metode diskritisasi terhadap performa klasifikasi.</p>
+<section id="diskritisasi-menggunakan-k-means-clustering">
+<h3>Diskritisasi Menggunakan K-Means Clustering<a class="headerlink" href="#diskritisasi-menggunakan-k-means-clustering" title="Link to this heading">#</a></h3>
+<p>Diskritisasi dengan metode <strong>K-Means</strong> dilakukan dengan memanfaatkan algoritma unsupervised learning untuk mengelompokkan nilai-nilai numerik ke dalam beberapa <strong>cluster (kelompok)</strong>. Berbeda dengan metode binning yang menggunakan pembagian rentang atau jumlah data, K-Means mendasarkan pengelompokan pada kemiripan data (proximity).</p>
+<p>Dalam tahap ini, setiap fitur numerik pada dataset Iris akan diproses secara independen menggunakan K-Means dengan jumlah cluster tertentu (misalnya 3 cluster). Hasil clustering kemudian akan menggantikan nilai numerik asli dengan label cluster yang bersesuaian. Proses ini mengubah fitur numerik menjadi kategori diskrit, sehingga dapat mengubah dinamika perilaku model klasifikasi.</p>
+<p>Setelah diskritisasi dilakukan, dataset hasil transformasi akan digunakan untuk pelatihan dan evaluasi model klasifikasi <strong>Naive Bayes dan Decision Tree</strong>, sehingga bisa dibandingkan dengan hasil dari data asli dan metode diskritisasi lainnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">discretize_kmeans_categorical</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">X_discretized</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;D&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]])</span>
+        <span class="n">X_discretized</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+
+    <span class="n">df_result</span> <span class="o">=</span> <span class="n">X_discretized</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_result</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_labels</span> <span class="c1"># Gunakan y_labels sesuai definisi fungsi</span>
+    <span class="k">return</span> <span class="n">df_result</span><span class="p">[[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+
+<span class="c1"># Panggil fungsi dengan menggunakan variabel y_labels yang sudah didefinisikan</span>
+<span class="n">df_kmeans_categorized</span> <span class="o">=</span> <span class="n">discretize_kmeans_categorical</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df_kmeans_categorized</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>setosa</td>
+      <td>C</td>
+      <td>B</td>
+      <td>B</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>C</td>
+      <td>A</td>
+      <td>B</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>C</td>
+      <td>B</td>
+      <td>B</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>C</td>
+      <td>A</td>
+      <td>B</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>C</td>
+      <td>B</td>
+      <td>B</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<section id="klasifikasi-naive-bayes-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means">
+<h4>Klasifikasi Naive Bayes Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan K-Means<a class="headerlink" href="#klasifikasi-naive-bayes-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encoding fitur kategorikal ke angka</span>
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">df_kmeans_categorized</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">y_encoded</span> <span class="o">=</span> <span class="n">df_kmeans_categorized</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">)</span>
+
+<span class="c1"># Split data menjadi train dan test</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">nb</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_nb</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_nb_kmeans</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Naive Bayes (KMeans): </span><span class="si">{</span><span class="n">accuracy_nb</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report Naive Bayes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes (KMeans): 0.9778
+Classification Report Naive Bayes:
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       1.00      0.85      0.92        13
+   virginica       0.87      1.00      0.93        13
+
+    accuracy                           0.96        45
+   macro avg       0.96      0.95      0.95        45
+weighted avg       0.96      0.96      0.96        45
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means">
+<h4>Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan K-Means<a class="headerlink" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encoding fitur kategorikal ke angka</span>
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">df_kmeans_categorized</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">y_encoded</span> <span class="o">=</span> <span class="n">df_kmeans_categorized</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">)</span>
+
+<span class="c1"># Split data menjadi train dan test</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Klasifikasi dengan Decision Tree</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_dt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_dt_kmeans</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Decision Tree (KMeans): </span><span class="si">{</span><span class="n">accuracy_dt</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report Decision Tree:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Decision Tree (KMeans): 1.0000
+Classification Report Decision Tree:
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       0.93      1.00      0.96        13
+   virginica       1.00      0.92      0.96        13
+
+    accuracy                           0.98        45
+   macro avg       0.98      0.97      0.97        45
+weighted avg       0.98      0.98      0.98        45
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diskritisasi-menggunakan-equal-width-binning">
+<h3>Diskritisasi Menggunakan Equal-Width Binning<a class="headerlink" href="#diskritisasi-menggunakan-equal-width-binning" title="Link to this heading">#</a></h3>
+<p>Equal-Width Binning adalah salah satu teknik diskritisasi yang membagi nilai-nilai numerik menjadi beberapa <strong>interval dengan lebar</strong> yang sama. Proses ini dilakukan dengan cara menghitung selisih antara nilai maksimum dan minimum dari suatu fitur, kemudian membaginya menjadi sejumlah bin (kelompok) yang ditentukan sebelumnya.</p>
+<p>Pada tahap ini, setiap fitur pada dataset Iris akan dibagi ke dalam empat bin (interval) dengan lebar yang sama. Setiap nilai dalam fitur tersebut akan dikategorikan ke dalam salah satu bin berdasarkan rentang interval yang ditetapkan.</p>
+<p>Selanjutnya, hasil binning akan dikonversi menjadi label kategorikal, seperti A, B, C, D, untuk merepresentasikan masing-masing kelompok. Dataset hasil transformasi kemudian digunakan untuk pelatihan dan evaluasi model klasifikasi menggunakan Naive Bayes dan Decision Tree, sehingga dapat dibandingkan performanya dengan hasil diskritisasi K-Means maupun data asli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">discretize_equal_width_categorical</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="c1"># Diskritisasi menggunakan Equal-Width Binning</span>
+    <span class="n">discretizer</span> <span class="o">=</span> <span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+    <span class="n">X_binned</span> <span class="o">=</span> <span class="n">discretizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Mapping ke huruf A-D</span>
+    <span class="n">bin_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;D&#39;</span><span class="p">}</span>
+    <span class="n">X_categorized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_binned</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="n">bin_mapping</span><span class="p">[</span><span class="n">val</span><span class="p">])</span>
+
+    <span class="c1"># Gabungkan dengan label class</span>
+    <span class="n">df_result</span> <span class="o">=</span> <span class="n">X_categorized</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_result</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_labels</span>
+    <span class="k">return</span> <span class="n">df_result</span><span class="p">[[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+
+<span class="c1"># Diskritisasi data</span>
+<span class="n">df_eq_width_categorized</span> <span class="o">=</span> <span class="n">discretize_equal_width_categorical</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df_eq_width_categorized</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2947/3222859020.py:8: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  X_categorized = pd.DataFrame(X_binned, columns=X.columns).astype(int).applymap(lambda val: bin_mapping[val])
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>C</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>B</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>C</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>B</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>C</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<section id="klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-width-binning">
+<h4>Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Width Binning<a class="headerlink" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-width-binning" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encoding fitur untuk klasifikasi</span>
+<span class="n">X_eqw</span> <span class="o">=</span> <span class="n">df_eq_width_categorized</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">y_eqw</span> <span class="o">=</span> <span class="n">df_eq_width_categorized</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<span class="n">encoder_eqw</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X_eqw_encoded</span> <span class="o">=</span> <span class="n">encoder_eqw</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_eqw</span><span class="p">)</span>
+
+<span class="c1"># Split Data</span>
+<span class="n">X_train_eqw</span><span class="p">,</span> <span class="n">X_test_eqw</span><span class="p">,</span> <span class="n">y_train_eqw</span><span class="p">,</span> <span class="n">y_test_eqw</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_eqw_encoded</span><span class="p">,</span> <span class="n">y_eqw</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Klasifikasi dengan Naive Bayes</span>
+<span class="n">nb_eqw</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+<span class="n">nb_eqw</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_eqw</span><span class="p">,</span> <span class="n">y_train_eqw</span><span class="p">)</span>
+<span class="n">y_pred_nb_eqw</span> <span class="o">=</span> <span class="n">nb_eqw</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_eqw</span><span class="p">)</span>
+<span class="n">accuracy_nb_eqw</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_eqw</span><span class="p">,</span> <span class="n">y_pred_nb_eqw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Naive Bayes (Equal-Width): </span><span class="si">{</span><span class="n">accuracy_nb_eqw</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report Naive Bayes (Equal-Width):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_eqw</span><span class="p">,</span> <span class="n">y_pred_nb_eqw</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes (Equal-Width): 0.9333
+Classification Report Naive Bayes (Equal-Width):
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       0.92      0.85      0.88        13
+   virginica       0.86      0.92      0.89        13
+
+    accuracy                           0.93        45
+   macro avg       0.92      0.92      0.92        45
+weighted avg       0.93      0.93      0.93        45
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h4>Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Width Binning<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encoding fitur untuk klasifikasi</span>
+<span class="n">X_eqw</span> <span class="o">=</span> <span class="n">df_eq_width_categorized</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">y_eqw</span> <span class="o">=</span> <span class="n">df_eq_width_categorized</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<span class="n">encoder_eqw</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X_eqw_encoded</span> <span class="o">=</span> <span class="n">encoder_eqw</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_eqw</span><span class="p">)</span>
+
+<span class="c1"># Split Data</span>
+<span class="n">X_train_eqw</span><span class="p">,</span> <span class="n">X_test_eqw</span><span class="p">,</span> <span class="n">y_train_eqw</span><span class="p">,</span> <span class="n">y_test_eqw</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_eqw_encoded</span><span class="p">,</span> <span class="n">y_eqw</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Klasifikasi dengan Decision Tree</span>
+<span class="n">dt_eqw</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dt_eqw</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_eqw</span><span class="p">,</span> <span class="n">y_train_eqw</span><span class="p">)</span>
+<span class="n">y_pred_dt_eqw</span> <span class="o">=</span> <span class="n">dt_eqw</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_eqw</span><span class="p">)</span>
+<span class="n">accuracy_dt_eqw</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_eqw</span><span class="p">,</span> <span class="n">y_pred_dt_eqw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Decision Tree (Equal-Width): </span><span class="si">{</span><span class="n">accuracy_dt_eqw</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report Decision Tree (Equal-Width):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_eqw</span><span class="p">,</span> <span class="n">y_pred_dt_eqw</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Decision Tree (Equal-Width): 0.9778
+Classification Report Decision Tree (Equal-Width):
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       0.93      1.00      0.96        13
+   virginica       1.00      0.92      0.96        13
+
+    accuracy                           0.98        45
+   macro avg       0.98      0.97      0.97        45
+weighted avg       0.98      0.98      0.98        45
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diskritisasi-menggunakan-equal-frequency-binning">
+<h3>Diskritisasi Menggunakan Equal-Frequency Binning<a class="headerlink" href="#diskritisasi-menggunakan-equal-frequency-binning" title="Link to this heading">#</a></h3>
+<p><strong>Equal-Frequency Binning</strong>, atau dikenal juga sebagai <strong>quantile binning</strong>, adalah teknik diskritisasi yang membagi data numerik menjadi beberapa kelompok (bin) sehingga <strong>jumlah data dalam tiap bin adalah sama atau hampir sama</strong>. Ini berbeda dengan Equal-Width Binning yang membagi berdasarkan interval lebar, karena Equal-Frequency lebih fokus pada distribusi jumlah data dalam tiap kelompok.</p>
+<p>Dalam proses ini, setiap fitur numerik pada dataset Iris akan dibagi ke dalam empat bin (kelompok), dengan jumlah data yang kurang lebih seimbang pada masing-masing bin. Setiap nilai kemudian dikategorikan ke dalam bin berdasarkan urutan nilainya dalam distribusi data.</p>
+<p>Setelah dilakukan binning, label numerik dari bin akan diubah menjadi label kategorikal seperti A, B, C, D. Dataset yang telah didiskritisasi secara equal-frequency ini selanjutnya akan digunakan untuk melakukan klasifikasi menggunakan Naive Bayes dan Decision Tree, untuk mengevaluasi bagaimana teknik ini memengaruhi performa model dibandingkan dengan metode diskritisasi lainnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">discretize_equal_freq_categorical</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">discretizer</span> <span class="o">=</span> <span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;quantile&#39;</span><span class="p">)</span>
+    <span class="n">X_binned</span> <span class="o">=</span> <span class="n">discretizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="n">bin_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;D&#39;</span><span class="p">}</span>
+    <span class="n">X_categorized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_binned</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="n">bin_mapping</span><span class="p">[</span><span class="n">val</span><span class="p">])</span>
+
+    <span class="n">df_result</span> <span class="o">=</span> <span class="n">X_categorized</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_result</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_labels</span>
+    <span class="k">return</span> <span class="n">df_result</span><span class="p">[[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+
+<span class="c1"># Terapkan Diskritisasi</span>
+<span class="n">df_eq_freq_categorized</span> <span class="o">=</span> <span class="n">discretize_equal_freq_categorical</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_labels</span><span class="p">)</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df_eq_freq_categorized</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2947/2156581228.py:6: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  X_categorized = pd.DataFrame(X_binned, columns=X.columns).astype(int).applymap(lambda val: bin_mapping[val])
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>setosa</td>
+      <td>B</td>
+      <td>D</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>C</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>C</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>C</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>setosa</td>
+      <td>A</td>
+      <td>D</td>
+      <td>A</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<section id="klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-frequency-binning">
+<h4>Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Frequency Binning<a class="headerlink" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-frequency-binning" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encoding Fitur untuk Klasifikasi</span>
+<span class="n">X_eqf</span> <span class="o">=</span> <span class="n">df_eq_freq_categorized</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">y_eqf</span> <span class="o">=</span> <span class="n">df_eq_freq_categorized</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<span class="n">encoder_eqf</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X_eqf_encoded</span> <span class="o">=</span> <span class="n">encoder_eqf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_eqf</span><span class="p">)</span>
+
+<span class="c1"># Split Data</span>
+<span class="n">X_train_eqf</span><span class="p">,</span> <span class="n">X_test_eqf</span><span class="p">,</span> <span class="n">y_train_eqf</span><span class="p">,</span> <span class="n">y_test_eqf</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_eqf_encoded</span><span class="p">,</span> <span class="n">y_eqf</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Klasifikasi dengan Naive Bayes</span>
+<span class="n">nb_eqf</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+<span class="n">nb_eqf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_eqf</span><span class="p">,</span> <span class="n">y_train_eqf</span><span class="p">)</span>
+<span class="n">y_pred_nb_eqf</span> <span class="o">=</span> <span class="n">nb_eqf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_eqf</span><span class="p">)</span>
+<span class="n">accuracy_nb_eqf</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_eqf</span><span class="p">,</span> <span class="n">y_pred_nb_eqf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Naive Bayes (Equal-Frequency): </span><span class="si">{</span><span class="n">accuracy_nb_eqf</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report Naive Bayes (Equal-Frequency):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_eqf</span><span class="p">,</span> <span class="n">y_pred_nb_eqf</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Naive Bayes (Equal-Frequency): 0.9556
+Classification Report Naive Bayes (Equal-Frequency):
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        19
+  versicolor       1.00      0.85      0.92        13
+   virginica       0.87      1.00      0.93        13
+
+    accuracy                           0.96        45
+   macro avg       0.96      0.95      0.95        45
+weighted avg       0.96      0.96      0.96        45
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h4>Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Frequency Binning<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encoding Fitur untuk Klasifikasi</span>
+<span class="n">X_eqf</span> <span class="o">=</span> <span class="n">df_eq_freq_categorized</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">y_eqf</span> <span class="o">=</span> <span class="n">df_eq_freq_categorized</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
+<span class="n">encoder_eqf</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">X_eqf_encoded</span> <span class="o">=</span> <span class="n">encoder_eqf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_eqf</span><span class="p">)</span>
+
+<span class="c1"># Split Data</span>
+<span class="n">X_train_eqf</span><span class="p">,</span> <span class="n">X_test_eqf</span><span class="p">,</span> <span class="n">y_train_eqf</span><span class="p">,</span> <span class="n">y_test_eqf</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_eqf_encoded</span><span class="p">,</span> <span class="n">y_eqf</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Klasifikasi dengan Decision Tree</span>
+<span class="n">dt_eqf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dt_eqf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_eqf</span><span class="p">,</span> <span class="n">y_train_eqf</span><span class="p">)</span>
+<span class="n">y_pred_dt_eqf</span> <span class="o">=</span> <span class="n">dt_eqf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_eqf</span><span class="p">)</span>
+<span class="n">accuracy_dt_eqf</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_eqf</span><span class="p">,</span> <span class="n">y_pred_dt_eqf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Decision Tree (Equal-Frequency): </span><span class="si">{</span><span class="n">accuracy_dt_eqf</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report Decision Tree (Equal-Frequency):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_eqf</span><span class="p">,</span> <span class="n">y_pred_dt_eqf</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Decision Tree (Equal-Frequency): 0.9333
+Classification Report Decision Tree (Equal-Frequency):
+              precision    recall  f1-score   support
+
+      setosa       0.90      1.00      0.95        19
+  versicolor       0.92      0.85      0.88        13
+   virginica       1.00      0.92      0.96        13
+
+    accuracy                           0.93        45
+   macro avg       0.94      0.92      0.93        45
+weighted avg       0.94      0.93      0.93        45
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Buat tabel ringkasan akurasi</span>
+<span class="n">comparison_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Metode&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Data Asli&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;K-Means Discretization&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Equal-Width Binning&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Equal-Frequency Binning&#39;</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Naive Bayes Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">accuracy_nb</span><span class="p">,</span>         <span class="c1"># dari data asli</span>
+        <span class="n">accuracy_nb_kmeans</span><span class="p">,</span>  <span class="c1"># dari k-means</span>
+        <span class="n">accuracy_nb_eqw</span><span class="p">,</span>     <span class="c1"># dari equal-width</span>
+        <span class="n">accuracy_nb_eqf</span>      <span class="c1"># dari equal-frequency</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Decision Tree Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">accuracy_dt</span><span class="p">,</span>         <span class="c1"># dari data asli</span>
+        <span class="n">accuracy_dt_kmeans</span><span class="p">,</span>  <span class="c1"># dari k-means</span>
+        <span class="n">accuracy_dt_eqw</span><span class="p">,</span>     <span class="c1"># dari equal-width</span>
+        <span class="n">accuracy_dt_eqf</span>      <span class="c1"># dari equal-frequency</span>
+    <span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Tampilkan tabel</span>
+<span class="n">display</span><span class="p">(</span><span class="n">comparison_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Metode</th>
+      <th>Naive Bayes Accuracy</th>
+      <th>Decision Tree Accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Data Asli</td>
+      <td>0.977778</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K-Means Discretization</td>
+      <td>0.955556</td>
+      <td>0.977778</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Equal-Width Binning</td>
+      <td>0.933333</td>
+      <td>0.977778</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Equal-Frequency Binning</td>
+      <td>0.955556</td>
+      <td>0.933333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="decisiontree.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Decision Tree</strong></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Teknik Binning</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dataset-iris"><strong>Implementasi Dataset Iris</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes">Klasifikasi Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree">Klasifikasi Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi">Diskritisasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-k-means-clustering">Diskritisasi Menggunakan K-Means Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-naive-bayes-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means">Klasifikasi Naive Bayes Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan K-Means</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-k-means">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan K-Means</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equal-width-binning">Diskritisasi Menggunakan Equal-Width Binning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-width-binning">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Width Binning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Width Binning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equal-frequency-binning">Diskritisasi Menggunakan Equal-Frequency Binning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-decision-tree-menggunakan-data-iris-hasil-dari-diskritisasi-menggunakan-equal-frequency-binning">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Frequency Binning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Klasifikasi Decision Tree Menggunakan Data Iris Hasil dari Diskritisasi Menggunakan Equal-Frequency Binning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dwi Prasetya Mumtaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
